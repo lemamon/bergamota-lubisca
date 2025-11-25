@@ -34,9 +34,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     navigate(`/${view === 'home' ? '' : view}`);
   };
 
-  // Determine if we should show the big logo in the header
-  const showHeaderLogo = activeView !== 'home';
-
   return (
     <div className="min-h-screen bg-brand-cream text-brand-dark flex flex-col font-sans relative overflow-hidden selection:bg-brand-pink selection:text-white">
       
@@ -52,13 +49,13 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       <div className="flex-1 flex flex-col lg:flex-row relative z-10">
         
-        <Sidebar activeView={activeView} onNavigate={handleNavigate} />
+        {/* <Sidebar activeView={activeView} onNavigate={handleNavigate} /> */}
 
         {/* --- MAIN CONTENT AREA --- */}
         <main className="flex-1 relative flex flex-col items-center">
           
           {/* Header Area (Centered Logo) - Conditionally rendered */}
-          <header className={`w-full pt-10 pb-4 flex flex-col items-center justify-center relative transition-all duration-500 ${showHeaderLogo ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10 pointer-events-none absolute'}`}>
+          <header className={`w-full pt-10 pb-4 flex flex-col items-center justify-center relative transition-all duration-500 'opacity-100 translate-y-0' `}>
             
             {/* Logo Container with "Sunburst" effect behind it */}
             <div 
@@ -95,12 +92,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           </header>
 
           {/* Mobile Menu Toggle */}
-          <button 
+          {/* <button 
               className="absolute top-6 right-6 lg:hidden text-brand-purple p-2 hover:bg-brand-purple/10 rounded-full z-40"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
-          </button>
+          </button> */}
 
           {/* Children Content */}
           <div className="w-full px-4 md:px-12 pb-24">
@@ -120,12 +117,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
         </main>
 
-        <RightSidebar activeView={activeView} onNavigate={handleNavigate} />
+        {/* <RightSidebar activeView={activeView} onNavigate={handleNavigate} /> */}
 
         {/* --- MOBILE OVERLAY MENU --- */}
-        {mobileMenuOpen && (
+        {/* {mobileMenuOpen && (
           <MobileMenu onNavigate={handleNavigate} onClose={() => setMobileMenuOpen(false)} />
-        )}
+        )} */}
 
       </div>
 
@@ -133,7 +130,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       
       {/* Footer */}
       <footer className="w-full bg-brand-purple text-brand-cream p-4 text-center font-sketch text-xl border-t-4 border-brand-pink flex items-center justify-between px-8">
+          <a 
+             href="https://lemamon.dev" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             className="text-brand-cream hover:text-brand-pink transition-colors duration-300 underline"
+           >
          <p>{t('layout.footer')}</p>
+         </a>
          <LanguageSelector />
       </footer>
     </div>
