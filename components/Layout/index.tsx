@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { JarLogo } from '../Icons';
 import { Menu, Star, X } from 'lucide-react';
 import { View } from '../../types';
@@ -9,12 +10,26 @@ import { ReservationFAB } from './ReservationFAB';
 
 interface LayoutProps {
   children: React.ReactNode;
-  activeView: View;
-  onNavigate: (view: View) => void;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate }) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Convert path to view for active state
+  const getViewFromPath = (path: string): View => {
+    const cleanPath = path.replace('/', '') || 'home';
+    if (cleanPath.startsWith('product/')) return 'product-details';
+    if (cleanPath.startsWith('blog/') && cleanPath !== 'blog') return 'blog-post';
+    return cleanPath as View;
+  };
+
+  const activeView = getViewFromPath(location.pathname);
+
+  const handleNavigate = (view: View) => {
+    navigate(`/${view === 'home' ? '' : view}`);
+  };
 
   // Determine if we should show the big logo in the header
   const showHeaderLogo = activeView !== 'home';
@@ -34,7 +49,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate
 
       <div className="flex-1 flex flex-col lg:flex-row relative z-10">
         
-        <Sidebar activeView={activeView} onNavigate={onNavigate} />
+        <Sidebar activeView={activeView} onNavigate={handleNavigate} />
 
         {/* --- MAIN CONTENT AREA --- */}
         <main className="flex-1 relative flex flex-col items-center">
@@ -45,7 +60,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate
             {/* Logo Container with "Sunburst" effect behind it */}
             <div 
               className="relative w-32 h-32 md:w-48 md:h-48 group cursor-pointer"
-              onClick={() => onNavigate('home')}
+              onClick={() => handleNavigate('home')}
             >
               <div className="absolute inset-0 bg-brand-orange rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-2xl transform scale-75"></div>
               <div className="relative z-10 w-full h-full transform group-hover:scale-105 transition-transform duration-500">
@@ -85,16 +100,16 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate
 
         </main>
 
-        <RightSidebar activeView={activeView} onNavigate={onNavigate} />
+        <RightSidebar activeView={activeView} onNavigate={handleNavigate} />
 
         {/* --- MOBILE OVERLAY MENU --- */}
         {mobileMenuOpen && (
-          <MobileMenu onNavigate={onNavigate} onClose={() => setMobileMenuOpen(false)} />
+          <MobileMenu onNavigate={handleNavigate} onClose={() => setMobileMenuOpen(false)} />
         )}
 
       </div>
 
-      <ReservationFAB activeView={activeView} onNavigate={onNavigate} />
+      <ReservationFAB activeView={activeView} onNavigate={handleNavigate} />
       
       {/* Footer */}
       <footer className="w-full bg-brand-purple text-brand-cream p-4 text-center font-sketch text-xl border-t-4 border-brand-pink">

@@ -1,6 +1,5 @@
-
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Layout } from './components/Layout/index';
 import { HomeCard } from './components/HomeCard/index';
 import { EventCard } from './components/EventCard/index';
@@ -17,104 +16,97 @@ import { ProductDetailsCard } from './components/ProductDetailsCard/index';
 import { BlogCard } from './components/BlogCard/index';
 import { BlogPostDetailCard } from './components/BlogPostDetailCard/index';
 import { TeamCard } from './components/TeamCard/index';
-import { View } from './types';
 import { CartProvider } from './contexts/CartContext';
 
-const App: React.FC = () => {
-  // Initialize state based on URL hash to support direct access to /#compact
-  const [currentView, setCurrentView] = useState<View>(() => {
-    if (typeof window !== 'undefined') {
-      const hash = window.location.hash.replace('#', '');
-      if (hash === 'compact') return 'compact';
-      if (hash === 'all') return 'all';
-      if (hash === 'store') return 'store';
-      if (hash === 'checkout') return 'checkout';
-      if (hash === 'blog') return 'blog';
-      if (hash === 'team') return 'team';
-      // Basic check if the hash matches other views, otherwise default to home
-      if (['home', 'event', 'menu', 'reservation', 'chefs', 'manifesto', 'contact'].includes(hash)) {
-        return hash as View;
-      }
-    }
-    return 'home';
-  });
+// Wrapper components to handle navigation with React Router
+const HomeWrapper: React.FC = () => {
+  const navigate = useNavigate();
+  return <HomeCard onNavigate={(view) => navigate(`/${view}`)} />;
+};
 
-  const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
-  const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
+const CompactWrapper: React.FC = () => {
+  const navigate = useNavigate();
+  return <CompactCard onNavigate={(view) => navigate(`/${view}`)} />;
+};
 
-  // Sync URL hash with current view (optional, but good UX)
-  useEffect(() => {
-    if (currentView !== 'product-details' && currentView !== 'blog-post') {
-       window.location.hash = currentView;
-    }
-  }, [currentView]);
+const AllWrapper: React.FC = () => {
+  const navigate = useNavigate();
+  return <AllCard onNavigate={(view) => navigate(`/${view}`)} />;
+};
 
-  const handleProductSelect = (id: number) => {
-    setSelectedProductId(id);
-    setCurrentView('product-details');
-  };
+const StoreWrapper: React.FC = () => {
+  const navigate = useNavigate();
+  return <StoreCard onProductClick={(id) => navigate(`/product/${id}`)} />;
+};
 
-  const handlePostSelect = (id: number) => {
-    setSelectedPostId(id);
-    setCurrentView('blog-post');
-  };
+const CheckoutWrapper: React.FC = () => {
+  const navigate = useNavigate();
+  return <CheckoutCard onNavigate={(view) => navigate(`/${view}`)} />;
+};
 
-  const renderContent = () => {
-    switch (currentView) {
-      case 'home':
-        return <HomeCard onNavigate={setCurrentView} />;
-      case 'event':
-        return <EventCard />;
-      case 'menu':
-        return <MenuCard />;
-      case 'reservation':
-        return <ReservationCard />;
-      case 'chefs':
-        return <ChefsCard />;
-      case 'team':
-        return <TeamCard />;
-      case 'manifesto':
-        return <ManifestoCard />;
-      case 'contact':
-        return <ContactCard />;
-      case 'compact':
-        return <CompactCard onNavigate={setCurrentView} />;
-      case 'all':
-        return <AllCard onNavigate={setCurrentView} />;
-      case 'store':
-        return <StoreCard onProductClick={handleProductSelect} />;
-      case 'checkout':
-        return <CheckoutCard onNavigate={setCurrentView} />;
-      case 'blog':
-        return <BlogCard onPostClick={handlePostSelect} />;
-      case 'blog-post':
-        return (
-          <BlogPostDetailCard 
-            postId={selectedPostId} 
-            onBack={() => setCurrentView('blog')} 
-          />
-        );
-      case 'product-details':
-        return (
-          <ProductDetailsCard 
-            productId={selectedProductId} 
-            onBack={() => setCurrentView('store')} 
-            onNavigateToCart={() => setCurrentView('checkout')}
-          />
-        );
-      default:
-        return <HomeCard onNavigate={setCurrentView} />;
-    }
-  };
+const BlogWrapper: React.FC = () => {
+  const navigate = useNavigate();
+  return <BlogCard onPostClick={(id) => navigate(`/blog/${id}`)} />;
+};
 
+const BlogPostWrapper: React.FC = () => {
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
   return (
-    <CartProvider>
-      <Layout activeView={currentView} onNavigate={setCurrentView}>
-        <div className="py-4 animate-fade-in-up">
-          {renderContent()}
-        </div>
-      </Layout>
-    </CartProvider>
+    <BlogPostDetailCard 
+      postId={id ? parseInt(id) : null} 
+      onBack={() => navigate('/blog')} 
+    />
+  );
+};
+
+const ProductDetailsWrapper: React.FC = () => {
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  return (
+    <ProductDetailsCard 
+      productId={id ? parseInt(id) : null} 
+      onBack={() => navigate('/store')} 
+      onNavigateToCart={() => navigate('/checkout')}
+    />
+  );
+};
+
+const AppRoutes: React.FC = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<HomeWrapper />} />
+      <Route path="/home" element={<Navigate to="/" replace />} />
+      <Route path="/event" element={<EventCard />} />
+      <Route path="/menu" element={<MenuCard />} />
+      <Route path="/reservation" element={<ReservationCard />} />
+      <Route path="/chefs" element={<ChefsCard />} />
+      <Route path="/team" element={<TeamCard />} />
+      <Route path="/manifesto" element={<ManifestoCard />} />
+      <Route path="/contact" element={<ContactCard />} />
+      <Route path="/compact" element={<CompactWrapper />} />
+      <Route path="/all" element={<AllWrapper />} />
+      <Route path="/store" element={<StoreWrapper />} />
+      <Route path="/product/:id" element={<ProductDetailsWrapper />} />
+      <Route path="/checkout" element={<CheckoutWrapper />} />
+      <Route path="/blog" element={<BlogWrapper />} />
+      <Route path="/blog/:id" element={<BlogPostWrapper />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <CartProvider>
+        <Layout>
+          <div className="py-4 animate-fade-in-up">
+            <AppRoutes />
+          </div>
+        </Layout>
+      </CartProvider>
+    </BrowserRouter>
   );
 };
 
