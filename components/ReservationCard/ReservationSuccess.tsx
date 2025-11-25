@@ -9,8 +9,9 @@ interface ReservationSuccessProps {
   formData: {
     name: string;
     email: string;
-    guests: number;
+    qty: number;
     date: string;
+    obs: string;
   };
 }
 
@@ -44,7 +45,7 @@ export const ReservationSuccess: React.FC<ReservationSuccessProps> = ({ formData
                <div className="flex justify-between items-end">
                   <div>
                     <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">{t('reservation.success.tableFor')}</div>
-                    <div className="font-sketch text-3xl text-brand-pink">{formData.guests} {t('reservation.success.people')}</div>
+                    <div className="font-sketch text-3xl text-brand-pink">{formData.qty} {t('reservation.success.people')}</div>
                   </div>
                   <div className="text-right">
                      <JarLogo /> 

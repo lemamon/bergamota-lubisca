@@ -12,9 +12,9 @@ import { PaperCard } from "../shared/PaperCard";
 interface FormData {
   name: string;
   email: string;
-  guests: number;
+  qty: number;
   date: string;
-  dietary: string;
+  obs: string;
 }
 
 interface ReservationFormProps {
@@ -138,7 +138,7 @@ export const ReservationForm: React.FC<ReservationFormProps> = ({
                     onClick={() =>
                       setFormData((prev) => ({
                         ...prev,
-                        guests: Math.max(1, prev.guests - 1),
+                        qty: Math.max(1, prev.qty - 1),
                       }))
                     }
                     className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-brand-purple/10 text-brand-purple font-bold text-xl"
@@ -146,14 +146,14 @@ export const ReservationForm: React.FC<ReservationFormProps> = ({
                     -
                   </button>
                   <span className="font-sketch text-3xl w-6 text-center">
-                    {formData.guests}
+                    {formData.qty}
                   </span>
                   <button
                     type="button"
                     onClick={() =>
                       setFormData((prev) => ({
                         ...prev,
-                        guests: Math.min(10, prev.guests + 1),
+                        qty: Math.min(10, prev.qty + 1),
                       }))
                     }
                     className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-brand-purple/10 text-brand-purple font-bold text-xl"
@@ -171,8 +171,8 @@ export const ReservationForm: React.FC<ReservationFormProps> = ({
               </label>
               <textarea
                 rows={2}
-                value={formData.dietary}
-                onChange={(e) => handleInputChange("dietary", e.target.value)}
+                value={formData.obs}
+                onChange={(e) => handleInputChange("obs", e.target.value)}
                 className="w-full bg-white/50 border-2 border-dashed border-brand-purple/30 focus:border-brand-pink outline-none p-4 rounded-lg font-serif italic text-brand-dark placeholder-brand-dark/30 resize-none transition-colors"
                 placeholder={t("reservation.form.dietaryPlaceholder")}
               />

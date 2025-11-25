@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 interface UseReservationCodeParams {
   name: string;
-  guests: number;
+  qty: number;
   email: string;
 }
 
@@ -11,7 +11,7 @@ interface UseReservationCodeParams {
  * Format: BL-{initials}-{guests}P-{hash}
  * Example: BL-JD-2P-A3F9
  */
-export const useReservationCode = ({ name, guests, email }: UseReservationCodeParams): string => {
+export const useReservationCode = ({ name, qty, email }: UseReservationCodeParams): string => {
   return useMemo(() => {
     // Get first 2 letters from name
     const initials = name.substring(0, 2).toUpperCase() || 'XX';
@@ -26,6 +26,6 @@ export const useReservationCode = ({ name, guests, email }: UseReservationCodePa
       .substring(0, 4)
       .padStart(4, '0');
     
-    return `BL-${initials}-${guests}P-${hash}`;
-  }, [name, guests, email]);
+    return `BL-${initials}-${qty}P-${hash}`;
+  }, [name, qty, email]);
 };

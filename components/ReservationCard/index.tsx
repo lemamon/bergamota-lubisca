@@ -7,9 +7,9 @@ export const ReservationCard: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    guests: 2,
+    qty: 2,
     date: '2024-05-20',
-    dietary: ''
+    obs: ''
   });
 
   const handleSubmit = (e: React.FormEvent) => {

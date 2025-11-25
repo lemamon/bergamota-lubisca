@@ -4,6 +4,7 @@ export interface ReservationData {
   email: string;
   phone: string;
   qty: number;
+  obs: string;
 }
 
 export interface ReservationSubmitResult {
@@ -38,6 +39,7 @@ export const submitReservation = async (
     formData.append("email", data.email);
     formData.append("phone", data.phone);
     formData.append("qty", data.qty.toString());
+    formData.append("obs", data.obs);
 
     const response = await fetch(url, {
       method: "POST",
