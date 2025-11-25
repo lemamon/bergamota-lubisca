@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { JarLogo } from '../Icons';
-import { Menu, Star, X } from 'lucide-react';
-import { View } from '../../types';
-import { Sidebar } from './Sidebar';
-import { RightSidebar } from './RightSidebar';
-import { MobileMenu } from './MobileMenu';
-import { ReservationFAB } from './ReservationFAB';
-import { LanguageSelector } from '../LanguageSelector';
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { JarLogo } from "../Icons";
+import { Menu, Star, X } from "lucide-react";
+import { View } from "../../types";
+import { Sidebar } from "./Sidebar";
+import { RightSidebar } from "./RightSidebar";
+import { MobileMenu } from "./MobileMenu";
+import { ReservationFAB } from "./ReservationFAB";
+import { LanguageSelector } from "../LanguageSelector";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,72 +22,87 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   // Convert path to view for active state
   const getViewFromPath = (path: string): View => {
-    const cleanPath = path.replace('/', '') || 'home';
-    if (cleanPath.startsWith('product/')) return 'product-details';
-    if (cleanPath.startsWith('blog/') && cleanPath !== 'blog') return 'blog-post';
+    const cleanPath = path.replace("/", "") || "home";
+    if (cleanPath.startsWith("product/")) return "product-details";
+    if (cleanPath.startsWith("blog/") && cleanPath !== "blog")
+      return "blog-post";
     return cleanPath as View;
   };
 
   const activeView = getViewFromPath(location.pathname);
 
   const handleNavigate = (view: View) => {
-    navigate(`/${view === 'home' ? '' : view}`);
+    navigate(`/${view === "home" ? "" : view}`);
   };
 
   return (
     <div className="min-h-screen bg-brand-cream text-brand-dark flex flex-col font-sans relative overflow-hidden selection:bg-brand-pink selection:text-white">
-      
       {/* Background Pattern - Polka dots using Brand Purple */}
       <div className="fixed inset-0 bg-[size:20px_20px] bg-dot-pattern opacity-[0.05] pointer-events-none z-0"></div>
 
       {/* Top Border Decoration */}
       <div className="h-3 w-full bg-brand-purple overflow-hidden flex items-center gap-4">
         {[...Array(30)].map((_, i) => (
-           <div key={i} className="w-full border-t-2 border-brand-cream transform -rotate-12 scale-150"></div>
+          <div
+            key={i}
+            className="w-full border-t-2 border-brand-cream transform -rotate-12 scale-150"
+          ></div>
         ))}
       </div>
 
       <div className="flex-1 flex flex-col lg:flex-row relative z-10">
-        
         {/* <Sidebar activeView={activeView} onNavigate={handleNavigate} /> */}
 
         {/* --- MAIN CONTENT AREA --- */}
         <main className="flex-1 relative flex flex-col items-center">
-          
           {/* Header Area (Centered Logo) - Conditionally rendered */}
-          <header className={`w-full pt-10 pb-4 flex flex-col items-center justify-center relative transition-all duration-500 'opacity-100 translate-y-0' `}>
-            
+          <header
+            className={`w-full pt-10 pb-4 flex flex-col items-center justify-center relative transition-all duration-500 'opacity-100 translate-y-0' `}
+          >
             {/* Logo Container with "Sunburst" effect behind it */}
-            <div 
+            <div
               className="relative w-32 h-32 md:w-48 md:h-48 group cursor-pointer"
-              onClick={() => handleNavigate('home')}
+              onClick={() => handleNavigate("home")}
             >
               <div className="absolute inset-0 bg-brand-orange rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-2xl transform scale-75"></div>
               <div className="relative z-10 w-full h-full transform group-hover:scale-105 transition-transform duration-500">
                 <JarLogo />
               </div>
             </div>
-            
+
             {/* Tagline */}
             <div className="mt-4 font-sketch text-2xl text-brand-purple transform -rotate-1 text-center px-4">
-              {t('layout.tagline', { 
+              {t("layout.tagline", {
                 interpolation: { escapeValue: false },
-                defaultValue: 'cozinha de <1>alma</1> & <2>amizade</2>'
-              }).split('<1>').map((part, i) => 
-                i === 0 ? part : (
-                  <React.Fragment key={i}>
-                    <span className="text-brand-pink font-bold">{part.split('</1>')[0]}</span>
-                    {part.split('</1>')[1]?.split('<2>').map((p, j) => 
-                      j === 0 ? p : (
-                        <React.Fragment key={j}>
-                          <span className="text-brand-orange font-bold">{p.split('</2>')[0]}</span>
-                          {p.split('</2>')[1]}
-                        </React.Fragment>
-                      )
-                    )}
-                  </React.Fragment>
-                )
-              )}
+                defaultValue: "cozinha de <1>alma</1> & <2>amizade</2>",
+              })
+                .split("<1>")
+                .map((part, i) =>
+                  i === 0 ? (
+                    part
+                  ) : (
+                    <React.Fragment key={i}>
+                      <span className="text-brand-pink font-bold">
+                        {part.split("</1>")[0]}
+                      </span>
+                      {part
+                        .split("</1>")[1]
+                        ?.split("<2>")
+                        .map((p, j) =>
+                          j === 0 ? (
+                            p
+                          ) : (
+                            <React.Fragment key={j}>
+                              <span className="text-brand-orange font-bold">
+                                {p.split("</2>")[0]}
+                              </span>
+                              {p.split("</2>")[1]}
+                            </React.Fragment>
+                          )
+                        )}
+                    </React.Fragment>
+                  )
+                )}
             </div>
           </header>
 
@@ -101,20 +116,16 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
           {/* Children Content */}
           <div className="w-full px-4 md:px-12 pb-24">
-             {/* Info Line (Only show on specific internal pages) */}
-             {(activeView === 'menu' || activeView === 'reservation') && (
-               <div className="w-full text-center mb-8 flex items-center justify-center gap-3 animate-pulse">
-                 <Star className="w-4 h-4 text-brand-orange fill-brand-orange" />
-                 <span className="text-brand-purple/80 font-bold tracking-widest text-xs uppercase font-sans border-b border-brand-pink">
-                   {t('layout.limitedSeats')}
-                 </span>
-                 <Star className="w-4 h-4 text-brand-orange fill-brand-orange" />
-               </div>
-             )}
-
-             {children}
+            {/* Info Line (Only show on specific internal pages) */}
+            <div className="w-full text-center mb-8 flex items-center justify-center gap-3 animate-pulse">
+              <Star className="w-4 h-4 text-brand-orange fill-brand-orange" />
+              <span className="text-brand-purple/80 font-bold tracking-widest text-xs uppercase font-sans border-b border-brand-pink">
+                {t("layout.limitedSeats")}
+              </span>
+              <Star className="w-4 h-4 text-brand-orange fill-brand-orange" />
+            </div>
+            {children}
           </div>
-
         </main>
 
         {/* <RightSidebar activeView={activeView} onNavigate={handleNavigate} /> */}
@@ -123,22 +134,21 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         {/* {mobileMenuOpen && (
           <MobileMenu onNavigate={handleNavigate} onClose={() => setMobileMenuOpen(false)} />
         )} */}
-
       </div>
 
       <ReservationFAB activeView={activeView} onNavigate={handleNavigate} />
-      
+
       {/* Footer */}
       <footer className="w-full bg-brand-purple text-brand-cream p-4 text-center font-sketch text-xl border-t-4 border-brand-pink flex items-center justify-between px-8">
-          <a 
-             href="https://lemamon.dev" 
-             target="_blank" 
-             rel="noopener noreferrer"
-             className="text-brand-cream hover:text-brand-pink transition-colors duration-300 underline"
-           >
-         <p>{t('layout.footer')}</p>
-         </a>
-         <LanguageSelector />
+        <a
+          href="https://lemamon.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-brand-cream hover:text-brand-pink transition-colors duration-300 underline"
+        >
+          <p>{t("layout.footer")}</p>
+        </a>
+        <LanguageSelector />
       </footer>
     </div>
   );
