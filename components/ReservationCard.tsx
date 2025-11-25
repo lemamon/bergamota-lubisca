@@ -5,10 +5,11 @@ import { StarDoodle, ScribbleLine, DiamondDivider } from './shared/Decorations';
 import { Check, Calendar } from 'lucide-react';
 import { Section } from './ui/Section';
 import { PaperCard } from './ui/PaperCard';
+import { useReservationCode } from '../hooks/useReservationCode';
 
 export const ReservationCard: React.FC = () => {
   const { t } = useTranslation();
-  const [step, setStep] = useState<'form' | 'success'>('form');
+  const [step, setStep] = useState<'form' | 'success'>('success');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,6 +27,12 @@ export const ReservationCard: React.FC = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const reservationCode = useReservationCode({
+    name: formData.name || 'Guest',
+    guests: formData.guests,
+    email: formData.email || 'pending@email.com'
+  });
+
   if (step === 'success') {
     return (
       <Section maxWidth="max-w-2xl" className="animate-fade-in-up">
@@ -36,13 +43,15 @@ export const ReservationCard: React.FC = () => {
                 <Check className="text-white w-10 h-10" strokeWidth={3} />
               </div>
 
-              <h2 className="font-sketch text-5xl text-brand-purple mb-2">{t('reservation.success.title')}</h2>
-              <p className="font-serif italic text-brand-dark/80 text-xl mb-8">
+              <h2 className="font-sketch text-4xl md:text-5xl text-brand-purple mb-4">{t('reservation.success.title')}</h2>
+              
+              <p className="font-serif text-brand-dark/90 text-lg mb-3">
                 {t('reservation.success.subtitle')}
               </p>
+    
 
               {/* TICKET STUB VISUAL */}
-              <div className="bg-white border-2 border-brand-dark w-full max-w-md relative p-6 shadow-sm transform -rotate-1">
+              <div className="bg-white border-2 border-brand-dark w-full max-w-md relative p-6 shadow-sm transform -rotate-1 mb-8">
                  <div className="absolute -left-3 top-1/2 w-6 h-6 bg-brand-cream rounded-full border-r-2 border-brand-dark transform -translate-y-1/2"></div>
                  <div className="absolute -right-3 top-1/2 w-6 h-6 bg-brand-cream rounded-full border-l-2 border-brand-dark transform -translate-y-1/2"></div>
                  
@@ -51,21 +60,71 @@ export const ReservationCard: React.FC = () => {
                     <div className="font-sketch text-3xl text-brand-dark">{formData.name}</div>
                  </div>
 
-                 <div className="flex justify-between items-end">
+                 <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
                       <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">{t('reservation.success.tableFor')}</div>
-                      <div className="font-sketch text-3xl text-brand-pink">{formData.guests} {t('reservation.success.people')}</div>
+                      <div className="font-sketch text-2xl text-brand-pink">{formData.guests} {t('reservation.success.people')}</div>
                     </div>
                     <div className="text-right">
-                       <JarLogo /> 
-                       <div className="w-12 h-12 absolute bottom-4 right-4 opacity-10"></div>
+                       <div className="w-16 h-16 opacity-20">
+                         <JarLogo />
+                       </div>
+                    </div>
+                 </div>
+                 
+                 <div className="border-t-2 border-dotted border-brand-dark/20 pt-4">
+                    <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-2">{t('reservation.success.reservationCode')}</div>
+                    <div className="font-mono text-2xl font-bold text-brand-dark bg-brand-cream/50 p-3 rounded text-center tracking-wider">
+                      {reservationCode}
                     </div>
                  </div>
               </div>
 
-              <div className="mt-10">
-                <p className="font-sans text-xs text-brand-purple/60 uppercase tracking-widest">
-                  {t('reservation.success.confirmationSent')} {formData.email}
+              <p className="font-serif font-bold text-brand-purple text-lg">
+                {t('reservation.success.nextStep')}
+              </p>
+
+              <p className="font-serif text-brand-dark/50 mb-6">
+                  {t('reservation.success.redirectInfo')}
+              </p>
+              
+              <div className="flex justify-center mb-6">
+                <button 
+                  onClick={() => window.open('https://pix-payment-link', '_blank')}
+                  className="group relative inline-block focus:outline-none"
+                >
+                  <span className="absolute inset-0 translate-x-1 translate-y-1 bg-brand-dark transition-transform group-hover:translate-x-2 group-hover:translate-y-2 rounded-full"></span>
+                  <span className="relative inline-block bg-brand-pink border-2 border-brand-dark px-12 py-3 rounded-full font-sketch text-3xl text-white uppercase tracking-widest transition-transform group-active:translate-y-1">
+                    {t('reservation.success.confirmButton')}
+                  </span>
+                </button>
+                
+              </div>
+          
+              <div className="w-full max-w-md space-y-4 mb-8 text-left bg-brand-cream/50 p-6 rounded-lg border border-brand-purple/20">
+                <p className="font-serif text-brand-dark/80">
+                  {t('reservation.success.instructions')}
+                </p>
+                
+                <p className="font-serif text-brand-dark/80">
+                  {t('reservation.success.pixCodeInfo')}
+                </p>
+              </div>
+
+              <div className="w-full max-w-md space-y-4 mb-8 text-center">
+                <p className="font-serif text-brand-dark/80">
+                  {t('reservation.success.confirmationInfo')}
+                </p>
+              </div>
+              
+              
+              
+              <div className="border-t-2 border-dashed border-brand-purple/20 pt-6">
+                <p className="font-serif text-sm text-brand-dark/70 mb-2">
+                  {t('reservation.success.contactUs')}
+                </p>
+                <p className="font-sans text-brand-purple font-bold">
+                  {t('reservation.success.contactNumber')}
                 </p>
               </div>
            </div>
