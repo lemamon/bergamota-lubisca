@@ -57,6 +57,19 @@ export const ReservationCard: React.FC = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  // Format phone as (XX) XXXXX-XXXX while typing
+  const formatPhone = (value: string) => {
+    const digits = value.replace(/\D/g, '').slice(0, 11);
+    const area = digits.slice(0, 2);
+    const part1 = digits.slice(2, 7);
+    const part2 = digits.slice(7);
+    let formatted = '';
+    if (area) formatted += `(${area}`;
+    if (part1) formatted += `) ${part1}`;
+    if (part2) formatted += `-${part2}`;
+    return formatted;
+  };
+
   const reservationCode = useReservationCode({
     name: formData.name || 'Guest',
     qty: formData.qty,
@@ -237,9 +250,10 @@ export const ReservationCard: React.FC = () => {
                     <label className="block font-sans text-xs font-bold text-brand-purple tracking-widest mb-1 uppercase">{t('reservation.form.whatsapp')}</label>
                     <input 
                       type="tel"
+                      inputMode="tel"
                       required
                       value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      onChange={(e) => handleInputChange('phone', formatPhone(e.target.value))}
                       className="w-full bg-transparent border-b-2 border-brand-purple/30 focus:border-brand-pink outline-none py-2 font-sketch text-2xl text-brand-dark"
                       placeholder={t('reservation.form.phone')}
                     />
