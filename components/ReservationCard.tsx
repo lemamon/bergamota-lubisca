@@ -8,6 +8,9 @@ import { PaperCard } from './ui/PaperCard';
 import { useReservationCode } from '../hooks/useReservationCode';
 import { submitReservation } from '../services/reservationService';
 
+
+const MAX_GUESTS = 5;
+
 export const ReservationCard: React.FC = () => {
   const { t } = useTranslation();
   const [step, setStep] = useState<'form' | 'success'>('form');
@@ -18,7 +21,7 @@ export const ReservationCard: React.FC = () => {
     name: '',
     email: '',
     phone: '',
-    qty: 2,
+    qty: 1,
     date: '2024-05-20',
     obs: ''
   });
@@ -266,9 +269,10 @@ export const ReservationCard: React.FC = () => {
                       </div>
                       
                       <div className="flex items-center gap-3 bg-white px-2 py-1 rounded-full border border-brand-purple">
+                        
                         <button 
                           type="button"
-                          onClick={() => setFormData(prev => ({ ...prev, guests: Math.max(1, prev.qty - 1) }))}
+                          onClick={() => setFormData(prev => ({ ...prev, qty: Math.max(1, prev.qty - 1) }))}
                           className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-brand-purple/10 text-brand-purple font-bold text-xl"
                         >
                           -
@@ -276,7 +280,7 @@ export const ReservationCard: React.FC = () => {
                         <span className="font-sketch text-3xl w-6 text-center">{formData.qty}</span>
                         <button 
                           type="button"
-                          onClick={() => setFormData(prev => ({ ...prev, guests: Math.min(10, prev.qty + 1) }))}
+                          onClick={() => setFormData(prev => ({ ...prev, qty: Math.min(MAX_GUESTS, prev.qty + 1) }))}
                           className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-brand-purple/10 text-brand-purple font-bold text-xl"
                         >
                           +
