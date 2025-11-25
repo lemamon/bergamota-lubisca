@@ -16,7 +16,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeView, onNavigate }) => {
   return (
     <aside className="hidden lg:flex w-72 flex-col justify-between border-r-2 border-dashed border-brand-purple/30 p-8 sticky top-0 h-screen bg-brand-cream/80 backdrop-blur-sm">
       <nav className="flex flex-col gap-4 mt-8">
-        {/* Logo Text Only for sidebar */}
         <Link 
           to="/"
           className="mb-8 text-brand-purple font-logo font-bold text-xl tracking-widest text-center border-b-2 border-brand-pink pb-4 cursor-pointer hover:text-brand-orange transition-colors"
