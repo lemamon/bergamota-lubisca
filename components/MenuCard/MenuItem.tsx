@@ -13,12 +13,12 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
       <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
         {item.brand === 'bergamota' ? (
           <div className="flex flex-col items-center gap-2">
-              <BergamotIcon className="h-16 w-16 text-brand-orange drop-shadow-sm" />
+              <BergamotIcon className="w-16 text-brand-orange drop-shadow-sm" />
               <span className="text-[10px] tracking-[0.2em] font-bold text-brand-purple/50 uppercase">Bergamota</span>
           </div>
         ) : item.brand === 'lubisca' ? (
           <div className="flex flex-col items-center gap-2">
-              <SmallJarIcon className="h-14 w-14 text-brand-pink drop-shadow-sm" />
+              <SmallJarIcon className="w-14 text-brand-pink drop-shadow-sm" />
               <span className="text-[10px] tracking-[0.2em] font-bold text-brand-purple/50 uppercase">Lubisca</span>
           </div>
         ) : (

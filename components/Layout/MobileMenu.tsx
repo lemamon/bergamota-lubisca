@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { View } from '../../types';
 import { X } from 'lucide-react';
 import { JarLogo } from '../Icons';
@@ -10,6 +11,7 @@ interface MobileMenuProps {
 }
 
 export const MobileMenu: React.FC<MobileMenuProps> = ({ onNavigate, onClose }) => {
+  const { t } = useTranslation();
   const handleMobileNav = (view: View) => {
     onNavigate(view);
     onClose();
@@ -29,48 +31,48 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ onNavigate, onClose }) =
       <nav className="flex flex-col items-center gap-6 relative z-10 overflow-y-auto max-h-[70vh]">
         <button onClick={() => handleMobileNav('home')} 
              className="font-sketch text-4xl text-brand-purple hover:text-brand-pink transition-colors">
-            HOME
+            {t('nav.home')}
         </button>
         <button onClick={() => handleMobileNav('event')} 
              className="font-sketch text-4xl text-brand-purple hover:text-brand-pink transition-colors">
-            O EVENTO
+            {t('nav.event')}
         </button>
         <button onClick={() => handleMobileNav('menu')} 
              className="font-sketch text-4xl text-brand-purple hover:text-brand-pink transition-colors">
-            CARDÁPIO
+            {t('nav.menu')}
         </button>
          <button onClick={() => handleMobileNav('store')} 
              className="font-sketch text-4xl text-brand-purple hover:text-brand-pink transition-colors">
-            LOJINHA
+            {t('nav.store')}
         </button>
         <button onClick={() => handleMobileNav('blog')} 
              className="font-sketch text-4xl text-brand-purple hover:text-brand-pink transition-colors">
-            BLOG
+            {t('nav.blog')}
         </button>
         <button onClick={() => handleMobileNav('reservation')} 
              className="font-sketch text-4xl text-brand-purple hover:text-brand-pink transition-colors">
-            RESERVAR
+            {t('nav.reserve')}
         </button>
         <button onClick={() => handleMobileNav('chefs')} 
              className="font-sketch text-4xl text-brand-purple hover:text-brand-pink transition-colors">
-            AS CHEFS
+            {t('nav.chefs')}
         </button>
         <button onClick={() => handleMobileNav('team')} 
              className="font-sketch text-4xl text-brand-purple hover:text-brand-pink transition-colors">
-            QUEM SOMOS
+            {t('nav.team')}
         </button>
         <button onClick={() => handleMobileNav('manifesto')} 
              className="font-sketch text-4xl text-brand-purple hover:text-brand-pink transition-colors">
-            MANIFESTO
+            {t('nav.manifesto')}
         </button>
          <button onClick={() => handleMobileNav('contact')} 
              className="font-sketch text-4xl text-brand-purple hover:text-brand-pink transition-colors">
-            CONTATO
+            {t('nav.contact')}
         </button>
         <div className="w-16 border-t border-brand-purple/20 my-2"></div>
         <button onClick={() => handleMobileNav('all')} 
              className="font-sketch text-4xl text-brand-orange hover:text-brand-pink transition-colors">
-            MENU COMPLETO
+            {t('nav.fullMenu')}
         </button>
       </nav>
 

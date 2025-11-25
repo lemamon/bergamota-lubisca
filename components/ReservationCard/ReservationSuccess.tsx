@@ -1,5 +1,6 @@
 import React from 'react';
 import { Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Section } from '../shared/Section';
 import { PaperCard } from '../shared/PaperCard';
 import { JarLogo } from '../Icons';
@@ -14,6 +15,8 @@ interface ReservationSuccessProps {
 }
 
 export const ReservationSuccess: React.FC<ReservationSuccessProps> = ({ formData }) => {
+  const { t } = useTranslation();
+  
   return (
     <Section maxWidth="max-w-2xl" className="animate-fade-in-up">
       <PaperCard innerClassName="p-4 md:p-8">
@@ -23,9 +26,9 @@ export const ReservationSuccess: React.FC<ReservationSuccessProps> = ({ formData
               <Check className="text-white w-10 h-10" strokeWidth={3} />
             </div>
 
-            <h2 className="font-sketch text-5xl text-brand-purple mb-2">Reserva Confirmada!</h2>
+            <h2 className="font-sketch text-5xl text-brand-purple mb-2">{t('reservation.success.title')}</h2>
             <p className="font-serif italic text-brand-dark/80 text-xl mb-8">
-              Mal podemos esperar para te receber nesta noite especial.
+              {t('reservation.success.subtitle')}
             </p>
 
             {/* TICKET STUB VISUAL */}
@@ -34,14 +37,14 @@ export const ReservationSuccess: React.FC<ReservationSuccessProps> = ({ formData
                <div className="absolute -right-3 top-1/2 w-6 h-6 bg-brand-cream rounded-full border-l-2 border-brand-dark transform -translate-y-1/2"></div>
                
                <div className="text-left border-b-2 border-dotted border-brand-dark/20 pb-4 mb-4">
-                  <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">CONVIDADO</div>
+                  <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">{t('reservation.success.guest')}</div>
                   <div className="font-sketch text-3xl text-brand-dark">{formData.name}</div>
                </div>
 
                <div className="flex justify-between items-end">
                   <div>
-                    <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">MESA PARA</div>
-                    <div className="font-sketch text-3xl text-brand-pink">{formData.guests} Pessoas</div>
+                    <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">{t('reservation.success.tableFor')}</div>
+                    <div className="font-sketch text-3xl text-brand-pink">{formData.guests} {t('reservation.success.people')}</div>
                   </div>
                   <div className="text-right">
                      <JarLogo /> 
@@ -52,7 +55,7 @@ export const ReservationSuccess: React.FC<ReservationSuccessProps> = ({ formData
 
             <div className="mt-10">
               <p className="font-sans text-xs text-brand-purple/60 uppercase tracking-widest">
-                Um e-mail de confirmação foi enviado para {formData.email}
+                {t('reservation.success.confirmationSent')} {formData.email}
               </p>
             </div>
          </div>

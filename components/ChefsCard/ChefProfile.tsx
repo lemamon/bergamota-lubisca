@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { BergamotIcon, SmallJarIcon } from '../Icons';
 
 interface ChefProfileProps {
@@ -8,11 +9,13 @@ interface ChefProfileProps {
 }
 
 export const ChefProfile: React.FC<ChefProfileProps> = ({ type, title, description }) => {
+  const { t } = useTranslation();
   const isBergamota = type === 'bergamota';
   const colorClass = isBergamota ? 'brand-orange' : 'brand-pink';
   const borderColorClass = isBergamota ? 'border-brand-orange' : 'border-brand-pink';
   const bgColorClass = isBergamota ? 'bg-brand-orange/10' : 'bg-brand-pink/10';
   const rotationClass = isBergamota ? 'group-hover:rotate-6' : 'group-hover:-rotate-6';
+  const chefName = isBergamota ? t('chefs.bergamota.name') : t('chefs.lubisca.name');
   
   return (
     <div className="flex flex-col items-center text-center group">
@@ -26,7 +29,7 @@ export const ChefProfile: React.FC<ChefProfileProps> = ({ type, title, descripti
             <div className={`absolute inset-0 bg-gradient-to-t from-${colorClass}/20 to-transparent`}></div>
           </div>
           <div className={`absolute -bottom-2 ${isBergamota ? '-right-2 rotate-3' : '-left-2 -rotate-3'} bg-brand-cream border border-brand-purple px-3 py-1 font-sketch text-xl text-brand-dark shadow-sm`}>
-            {isBergamota ? 'A Bergamota' : 'A Lubisca'}
+            {chefName}
           </div>
        </div>
 
@@ -34,7 +37,7 @@ export const ChefProfile: React.FC<ChefProfileProps> = ({ type, title, descripti
        <div className={`w-12 h-1 bg-${colorClass} mb-4`}></div>
        
        <p className="font-serif italic text-brand-dark/80 leading-relaxed px-4">
-         "{description}"
+         {description}
        </p>
     </div>
   );

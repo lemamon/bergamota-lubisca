@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ShoppingBag } from 'lucide-react';
 import { View } from '../../types';
 import { useCart } from '../../contexts/CartContext';
@@ -18,6 +19,7 @@ interface QuickLink {
 
 export const RightSidebar: React.FC<RightSidebarProps> = ({ activeView, onNavigate }) => {
   const { itemCount } = useCart();
+  const { t } = useTranslation();
 
   // Logic for contextual links
   const getContextLinks = (): QuickLink[] => {
@@ -25,44 +27,44 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({ activeView, onNaviga
       case 'menu':
       case 'all':
         return [
-          { label: 'SNACKS' },
-          { label: 'ENTRADAS' },
-          { label: 'PRINCIPAIS' },
-          { label: 'SOBREMESAS' }
+          { label: t('menu.snacks') },
+          { label: t('menu.starters') },
+          { label: t('menu.mains') },
+          { label: t('menu.desserts') }
         ];
       case 'store':
         return [
-          { label: 'FERMENTADOS' },
-          { label: 'CONSERVAS' },
-          { label: 'VESTUÁRIO' },
-          { label: 'KITS' }
+          { label: t('store.fermented') },
+          { label: t('store.preserves') },
+          { label: t('store.apparel') },
+          { label: t('store.kits') }
         ];
       case 'checkout':
         return [
-          { label: 'CONTINUAR', action: () => onNavigate('store') },
-          { label: 'LOJINHA', action: () => onNavigate('store') },
+          { label: t('checkout.continueShopping'), action: () => onNavigate('store') },
+          { label: t('sidebar.store'), action: () => onNavigate('store') },
         ];
       case 'blog':
         return [
-          { label: 'TÉCNICAS' },
-          { label: 'HISTÓRIAS' },
-          { label: 'BASTIDORES' },
+          { label: t('blog.techniques') },
+          { label: t('blog.stories') },
+          { label: t('blog.behindScenes') },
         ];
       default:
         return [
-          { label: 'O JANTAR', action: () => onNavigate('event') },
-          { label: 'CARDÁPIO', action: () => onNavigate('menu') },
-          { label: 'LOJINHA', action: () => onNavigate('store') },
-          { label: 'BLOG', action: () => onNavigate('blog') },
-          { label: 'RESERVAR', action: () => onNavigate('reservation') }
+          { label: t('sidebar.theDinner'), action: () => onNavigate('event') },
+          { label: t('sidebar.menu'), action: () => onNavigate('menu') },
+          { label: t('sidebar.store'), action: () => onNavigate('store') },
+          { label: t('sidebar.blog'), action: () => onNavigate('blog') },
+          { label: t('sidebar.reserve'), action: () => onNavigate('reservation') }
         ];
     }
   };
 
   const contextLinks = getContextLinks();
-  const contextTitle = activeView === 'menu' || activeView === 'all' ? 'SEÇÕES' : 
-                       activeView === 'store' ? 'CATEGORIAS' : 
-                       activeView === 'blog' ? 'TEMAS' : 'ATALHOS';
+  const contextTitle = activeView === 'menu' || activeView === 'all' ? t('sidebar.sections') : 
+                       activeView === 'store' ? t('sidebar.categories') : 
+                       activeView === 'blog' ? t('sidebar.themes') : t('sidebar.shortcuts');
 
   return (
     <aside className="hidden lg:flex w-64 flex-col border-l-2 border-dashed border-brand-purple/30 p-8 sticky top-0 h-screen text-right bg-brand-cream/80 backdrop-blur-sm">
@@ -78,7 +80,7 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({ activeView, onNaviga
               {itemCount}
             </div>
           </div>
-          <span className="text-3xl tracking-widest font-sketch text-brand-purple mt-2 group-hover:text-brand-pink transition-colors">SACOLA</span>
+          <span className="text-3xl tracking-widest font-sketch text-brand-purple mt-2 group-hover:text-brand-pink transition-colors">{t('nav.cart')}</span>
           <div className="h-1 w-full bg-brand-purple rounded-full group-hover:bg-brand-pink transition-colors"></div>
        </div>
 

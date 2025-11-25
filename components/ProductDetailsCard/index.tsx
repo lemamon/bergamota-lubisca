@@ -1,6 +1,7 @@
 
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Section } from '../ui/Section';
 import { PaperCard } from '../ui/PaperCard';
 import { DiamondDivider, StarDoodle, ScribbleLine } from '../shared/Decorations';
@@ -16,6 +17,7 @@ interface ProductDetailsCardProps {
 }
 
 export const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ productId, onBack, onNavigateToCart }) => {
+  const { t } = useTranslation();
   const product = PRODUCTS.find(p => p.id === productId);
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
@@ -24,8 +26,8 @@ export const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ productI
   if (!product) {
     return (
       <Section className="text-center py-20">
-        <h2 className="font-sketch text-4xl text-brand-purple">Produto não encontrado</h2>
-        <button onClick={onBack} className="mt-4 underline">Voltar para a loja</button>
+        <h2 className="font-sketch text-4xl text-brand-purple">{t('productDetails.notFound')}</h2>
+        <button onClick={onBack} className="mt-4 underline">{t('productDetails.backToStore')}</button>
       </Section>
     );
   }
@@ -37,10 +39,10 @@ export const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ productI
   };
 
   const getProductLabel = () => {
-    if (product.type === 'lubisca') return 'Lubisca Fermentados';
-    if (product.type === 'bergamota') return 'Cozinha da Bergamota';
-    if (product.type === 'ticket') return 'INGRESSO OFICIAL';
-    return 'Merch Oficial';
+    if (product.type === 'lubisca') return t('productDetails.lubiscaFermented');
+    if (product.type === 'bergamota') return t('productDetails.bergamotaKitchen');
+    if (product.type === 'ticket') return t('productDetails.officialTicket');
+    return t('productDetails.officialMerch');
   };
 
   return (
@@ -51,7 +53,7 @@ export const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ productI
         className="mb-6 flex items-center gap-2 text-brand-purple font-sketch text-2xl hover:text-brand-pink transition-colors group"
       >
         <ArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-        <span>Voltar para a Lojinha</span>
+        <span>{t('productDetails.backToStore')}</span>
       </button>
 
       <PaperCard className="overflow-hidden">

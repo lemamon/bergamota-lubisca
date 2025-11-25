@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Section } from '../ui/Section';
 import { ScribbleLine, StarDoodle } from '../shared/Decorations';
 import { BLOG_POSTS } from '../../constants';
@@ -83,17 +84,19 @@ const BlogPostItem = ({ post, isFeatured, onClick }: { post: any, isFeatured: bo
 };
 
 export const BlogCard: React.FC<BlogCardProps> = ({ onPostClick }) => {
+  const { t } = useTranslation();
+  
   return (
     <Section maxWidth="max-w-5xl">
       <div className="text-center mb-12">
         <h1 className="font-sketch text-7xl text-brand-purple mb-4 relative inline-block">
-          DIÁRIO DE BORDO
+          {t('blog.title')}
           <div className="absolute top-0 right-0 transform translate-x-full translate-y-2">
             <StarDoodle className="w-8 h-8 text-brand-orange animate-pulse" />
           </div>
         </h1>
         <p className="font-serif italic text-brand-dark/60 text-lg max-w-xl mx-auto">
-          Notas de cozinha, memórias soltas e segredos que decidimos compartilhar antes do jantar.
+          {t('blog.subtitle')}
         </p>
       </div>
 
@@ -111,7 +114,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ onPostClick }) => {
       <div className="mt-16 text-center">
          <ScribbleLine />
          <p className="mt-4 font-serif text-sm text-brand-dark/40 italic">
-           Novas histórias fermentando...
+           {t('blog.moreStories')}
          </p>
       </div>
 

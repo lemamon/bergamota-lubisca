@@ -1,8 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScribbleLine, StarDoodle } from './shared/Decorations';
 import { Section } from './ui/Section';
 
 export const ManifestoCard: React.FC = () => {
+  const { t } = useTranslation();
+  const paragraphs = t('manifesto.content', { returnObjects: true }) as string[];
+  
   return (
     <Section maxWidth="max-w-3xl">
       
@@ -15,32 +19,28 @@ export const ManifestoCard: React.FC = () => {
 
         <div className="text-center space-y-10 relative">
            
-           <h1 className="font-sketch text-7xl text-brand-purple drop-shadow-sm">Manifesto</h1>
+           <h1 className="font-sketch text-7xl text-brand-purple drop-shadow-sm">{t('manifesto.title')}</h1>
            
            <div className="w-full max-w-md mx-auto opacity-50">
              <ScribbleLine />
            </div>
 
-           <div className="font-serif text-lg md:text-xl text-brand-dark leading-loose space-y-6">
-              <p className="first-letter:text-5xl first-letter:font-sketch first-letter:text-brand-orange first-letter:mr-1 first-letter:float-left">
-                Acreditamos que a mesa é um lugar sagrado. Não pelo ritual rígido, mas pela magia do encontro.
-              </p>
-              
-              <p>
-                A <strong className="text-brand-orange">Bergamota</strong> e a <strong className="text-brand-pink">Lubisca</strong> nasceram dessa vontade de conectar. De pegar a memória de um domingo na casa da avó e misturar com a técnica apurada de anos de cozinha profissional.
-              </p>
-
-              <blockquote className="font-sketch text-3xl text-brand-purple my-8 py-4 border-t border-b border-brand-purple/20">
-                "Comida não é só nutrição. É afeto que se mastiga."
-              </blockquote>
-
-              <p>
-                Este jantar não é apenas sobre o que está no prato. É sobre o som das taças brindando, a risada que escapa alta demais, o cheiro que te faz fechar os olhos e viajar no tempo.
-              </p>
-              
-              <p>
-                Cozinhamos para contar histórias. E queremos que você faça parte deste capítulo.
-              </p>
+           <div className="font-serif text-lg md:text-xl text-brand-dark leading-loose space-y-6 text-left">
+              {paragraphs.map((paragraph, index) => {
+                if (paragraph === t('manifesto.quote')) {
+                  return (
+                    <blockquote key={index} className="font-sketch text-3xl text-brand-purple my-8 py-4 border-t border-b border-brand-purple/20 text-center">
+                      "{paragraph}"
+                    </blockquote>
+                  );
+                }
+                
+                return (
+                  <p key={index} className={index === 0 ? "first-letter:text-5xl first-letter:font-sketch first-letter:text-brand-orange first-letter:mr-1 first-letter:float-left" : ""}>
+                    {paragraph}
+                  </p>
+                );
+              })}
            </div>
 
            <div className="pt-12 flex justify-center gap-4">

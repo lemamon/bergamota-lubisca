@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { JarLogo } from '../Icons';
 import { Menu, Star, X } from 'lucide-react';
 import { View } from '../../types';
@@ -7,6 +8,7 @@ import { Sidebar } from './Sidebar';
 import { RightSidebar } from './RightSidebar';
 import { MobileMenu } from './MobileMenu';
 import { ReservationFAB } from './ReservationFAB';
+import { LanguageSelector } from '../LanguageSelector';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,6 +18,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // Convert path to view for active state
   const getViewFromPath = (path: string): View => {
@@ -70,7 +73,24 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             
             {/* Tagline */}
             <div className="mt-4 font-sketch text-2xl text-brand-purple transform -rotate-1 text-center px-4">
-              cozinha de <span className="text-brand-pink font-bold">alma</span> & <span className="text-brand-orange font-bold">amizade</span>
+              {t('layout.tagline', { 
+                interpolation: { escapeValue: false },
+                defaultValue: 'cozinha de <1>alma</1> & <2>amizade</2>'
+              }).split('<1>').map((part, i) => 
+                i === 0 ? part : (
+                  <React.Fragment key={i}>
+                    <span className="text-brand-pink font-bold">{part.split('</1>')[0]}</span>
+                    {part.split('</1>')[1]?.split('<2>').map((p, j) => 
+                      j === 0 ? p : (
+                        <React.Fragment key={j}>
+                          <span className="text-brand-orange font-bold">{p.split('</2>')[0]}</span>
+                          {p.split('</2>')[1]}
+                        </React.Fragment>
+                      )
+                    )}
+                  </React.Fragment>
+                )
+              )}
             </div>
           </header>
 
@@ -89,7 +109,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                <div className="w-full text-center mb-8 flex items-center justify-center gap-3 animate-pulse">
                  <Star className="w-4 h-4 text-brand-orange fill-brand-orange" />
                  <span className="text-brand-purple/80 font-bold tracking-widest text-xs uppercase font-sans border-b border-brand-pink">
-                   VAGAS LIMITADAS PARA ESTA EXPERIÊNCIA
+                   {t('layout.limitedSeats')}
                  </span>
                  <Star className="w-4 h-4 text-brand-orange fill-brand-orange" />
                </div>
@@ -112,8 +132,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <ReservationFAB activeView={activeView} onNavigate={handleNavigate} />
       
       {/* Footer */}
-      <footer className="w-full bg-brand-purple text-brand-cream p-4 text-center font-sketch text-xl border-t-4 border-brand-pink">
-         <p>© 2024 Bergamota Lubisca. Uma experiência única.</p>
+      <footer className="w-full bg-brand-purple text-brand-cream p-4 text-center font-sketch text-xl border-t-4 border-brand-pink flex items-center justify-between px-8">
+         <p>{t('layout.footer')}</p>
+         <LanguageSelector />
       </footer>
     </div>
   );

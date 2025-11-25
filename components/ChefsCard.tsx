@@ -1,10 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { BergamotIcon, SmallJarIcon } from './Icons';
 import { StarDoodle, DiamondDivider } from './shared/Decorations';
 import { Section } from './ui/Section';
 import { PaperCard } from './ui/PaperCard';
 
 export const ChefsCard: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <Section>
        {/* Background Decor */}
@@ -14,7 +17,7 @@ export const ChefsCard: React.FC = () => {
           <StarDoodle className="absolute top-6 left-6 w-6 h-6 text-brand-orange animate-spin-slow" />
           <StarDoodle className="absolute bottom-6 right-6 w-6 h-6 text-brand-pink animate-spin-slow" />
 
-          <h2 className="font-sketch text-6xl text-brand-dark text-center mb-12">Quem Cozinha</h2>
+          <h2 className="font-sketch text-6xl text-brand-dark text-center mb-12">{t('chefs.title')}</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8">
             
@@ -26,15 +29,15 @@ export const ChefsCard: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-orange/20 to-transparent"></div>
                   </div>
                   <div className="absolute -bottom-2 -right-2 bg-brand-cream border border-brand-purple px-3 py-1 font-sketch text-xl text-brand-dark rotate-3 shadow-sm">
-                    A Bergamota
+                    {t('chefs.bergamota.name')}
                   </div>
                </div>
 
-               <h3 className="font-serif font-bold text-2xl text-brand-dark mb-2">Cozinha de Memória</h3>
+               <h3 className="font-serif font-bold text-2xl text-brand-dark mb-2">{t('chefs.bergamota.tagline')}</h3>
                <div className="w-12 h-1 bg-brand-orange mb-4"></div>
                
                <p className="font-serif italic text-brand-dark/80 leading-relaxed px-4">
-                 "Cozinhar é resgatar o que a gente nem sabia que tinha esquecido. Minha busca é pelo conforto, pelo abraço em forma de comida, mas sempre com aquele toque ácido que desperta o paladar."
+                 {t('chefs.bergamota.description')}
                </p>
             </div>
 
@@ -51,15 +54,15 @@ export const ChefsCard: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-pink/20 to-transparent"></div>
                   </div>
                   <div className="absolute -bottom-2 -left-2 bg-brand-cream border border-brand-purple px-3 py-1 font-sketch text-xl text-brand-dark -rotate-3 shadow-sm">
-                    A Lubisca
+                    {t('chefs.lubisca.name')}
                   </div>
                </div>
 
-               <h3 className="font-serif font-bold text-2xl text-brand-dark mb-2">Fermentação & Ousadia</h3>
+               <h3 className="font-serif font-bold text-2xl text-brand-dark mb-2">{t('chefs.lubisca.tagline')}</h3>
                <div className="w-12 h-1 bg-brand-pink mb-4"></div>
                
                <p className="font-serif italic text-brand-dark/80 leading-relaxed px-4">
-                 "O tempo é o melhor ingrediente. Minha cozinha é viva, colorida e paciente. Gosto de ver a transformação dos alimentos e trazer para a mesa sabores que desafiam e encantam."
+                 {t('chefs.lubisca.description')}
                </p>
             </div>
 
@@ -68,7 +71,7 @@ export const ChefsCard: React.FC = () => {
           <div className="mt-16 text-center max-w-2xl mx-auto">
             <DiamondDivider />
             <p className="mt-8 font-sketch text-3xl text-brand-purple">
-              Duas amigas. Duas cozinhas. Uma só mesa.
+              {t('chefs.together')}
             </p>
           </div>
        </PaperCard>

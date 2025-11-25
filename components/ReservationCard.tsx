@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { JarLogo } from './Icons';
 import { StarDoodle, ScribbleLine, DiamondDivider } from './shared/Decorations';
 import { Check, Calendar } from 'lucide-react';
@@ -6,6 +7,7 @@ import { Section } from './ui/Section';
 import { PaperCard } from './ui/PaperCard';
 
 export const ReservationCard: React.FC = () => {
+  const { t } = useTranslation();
   const [step, setStep] = useState<'form' | 'success'>('form');
   const [formData, setFormData] = useState({
     name: '',
@@ -34,9 +36,9 @@ export const ReservationCard: React.FC = () => {
                 <Check className="text-white w-10 h-10" strokeWidth={3} />
               </div>
 
-              <h2 className="font-sketch text-5xl text-brand-purple mb-2">Reserva Confirmada!</h2>
+              <h2 className="font-sketch text-5xl text-brand-purple mb-2">{t('reservation.success.title')}</h2>
               <p className="font-serif italic text-brand-dark/80 text-xl mb-8">
-                Mal podemos esperar para te receber nesta noite especial.
+                {t('reservation.success.subtitle')}
               </p>
 
               {/* TICKET STUB VISUAL */}
@@ -45,14 +47,14 @@ export const ReservationCard: React.FC = () => {
                  <div className="absolute -right-3 top-1/2 w-6 h-6 bg-brand-cream rounded-full border-l-2 border-brand-dark transform -translate-y-1/2"></div>
                  
                  <div className="text-left border-b-2 border-dotted border-brand-dark/20 pb-4 mb-4">
-                    <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">CONVIDADO</div>
+                    <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">{t('reservation.success.guest')}</div>
                     <div className="font-sketch text-3xl text-brand-dark">{formData.name}</div>
                  </div>
 
                  <div className="flex justify-between items-end">
                     <div>
-                      <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">MESA PARA</div>
-                      <div className="font-sketch text-3xl text-brand-pink">{formData.guests} Pessoas</div>
+                      <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">{t('reservation.success.tableFor')}</div>
+                      <div className="font-sketch text-3xl text-brand-pink">{formData.guests} {t('reservation.success.people')}</div>
                     </div>
                     <div className="text-right">
                        <JarLogo /> 
@@ -63,7 +65,7 @@ export const ReservationCard: React.FC = () => {
 
               <div className="mt-10">
                 <p className="font-sans text-xs text-brand-purple/60 uppercase tracking-widest">
-                  Um e-mail de confirmação foi enviado para {formData.email}
+                  {t('reservation.success.confirmationSent')} {formData.email}
                 </p>
               </div>
            </div>
@@ -85,10 +87,10 @@ export const ReservationCard: React.FC = () => {
             <StarDoodle className="absolute top-4 right-4 w-6 h-6 text-brand-orange" />
 
             <header className="text-center mb-10">
-              <h2 className="font-sketch text-6xl text-brand-dark mb-2">Reserva</h2>
+              <h2 className="font-sketch text-6xl text-brand-dark mb-2">{t('reservation.title')}</h2>
               <ScribbleLine />
               <p className="font-serif italic text-brand-purple mt-4 text-lg">
-                Garanta seu lugar à nossa mesa.
+                {t('reservation.subtitle')}
               </p>
             </header>
 
@@ -99,14 +101,14 @@ export const ReservationCard: React.FC = () => {
                 
                 {/* Name */}
                 <div className="relative group">
-                  <label className="block font-sans text-xs font-bold text-brand-purple tracking-widest mb-1 uppercase">Seu Nome</label>
+                  <label className="block font-sans text-xs font-bold text-brand-purple tracking-widest mb-1 uppercase">{t('reservation.form.yourName')}</label>
                   <input 
                     type="text" 
                     required
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                     className="w-full bg-transparent border-b-2 border-brand-purple/30 focus:border-brand-pink outline-none py-2 font-sketch text-3xl text-brand-dark placeholder-brand-dark/20 transition-colors"
-                    placeholder="Como podemos te chamar?"
+                    placeholder={t('reservation.form.namePlaceholder')}
                   />
                   <StarDoodle className="absolute right-0 bottom-2 w-4 h-4 text-brand-orange opacity-0 group-focus-within:opacity-100 transition-opacity" />
                 </div>
@@ -114,22 +116,22 @@ export const ReservationCard: React.FC = () => {
                 {/* Email & Phone Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="relative group">
-                    <label className="block font-sans text-xs font-bold text-brand-purple tracking-widest mb-1 uppercase">Email</label>
+                    <label className="block font-sans text-xs font-bold text-brand-purple tracking-widest mb-1 uppercase">{t('reservation.form.email')}</label>
                     <input 
                       type="email" 
                       required
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
                       className="w-full bg-transparent border-b-2 border-brand-purple/30 focus:border-brand-pink outline-none py-2 font-sketch text-2xl text-brand-dark"
-                      placeholder="seu@email.com"
+                      placeholder={t('reservation.form.emailPlaceholder')}
                     />
                   </div>
                   <div className="relative group">
-                    <label className="block font-sans text-xs font-bold text-brand-purple tracking-widest mb-1 uppercase">WhatsApp</label>
+                    <label className="block font-sans text-xs font-bold text-brand-purple tracking-widest mb-1 uppercase">{t('reservation.form.whatsapp')}</label>
                     <input 
                       type="tel" 
                       className="w-full bg-transparent border-b-2 border-brand-purple/30 focus:border-brand-pink outline-none py-2 font-sketch text-2xl text-brand-dark"
-                      placeholder="(00) 00000-0000"
+                      placeholder={t('reservation.form.phone')}
                     />
                   </div>
                 </div>
@@ -143,17 +145,17 @@ export const ReservationCard: React.FC = () => {
                         <Calendar size={20} />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-brand-purple uppercase tracking-widest">DATA</div>
-                        <div className="font-sketch text-2xl text-brand-dark">20 de Maio, 2024</div>
-                        <div className="font-serif text-sm italic text-brand-pink">Sábado, às 19h30</div>
+                        <div className="text-xs font-bold text-brand-purple uppercase tracking-widest">{t('reservation.form.date')}</div>
+                        <div className="font-sketch text-2xl text-brand-dark">{t('reservation.form.dateValue')}</div>
+                        <div className="font-serif text-sm italic text-brand-pink">{t('reservation.form.dateTime')}</div>
                       </div>
                    </div>
 
                    {/* Guests Counter */}
                    <div className="flex items-center gap-4">
                       <div className="text-right md:mr-2">
-                        <div className="text-xs font-bold text-brand-purple uppercase tracking-widest">LUGARES</div>
-                        <div className="font-serif text-xs italic text-brand-dark/60">Quantas pessoas?</div>
+                        <div className="text-xs font-bold text-brand-purple uppercase tracking-widest">{t('reservation.form.places')}</div>
+                        <div className="font-serif text-xs italic text-brand-dark/60">{t('reservation.form.howMany')}</div>
                       </div>
                       
                       <div className="flex items-center gap-3 bg-white px-2 py-1 rounded-full border border-brand-purple">
@@ -179,14 +181,14 @@ export const ReservationCard: React.FC = () => {
                 {/* Dietary */}
                 <div className="relative">
                   <label className="block font-sans text-xs font-bold text-brand-purple tracking-widest mb-2 uppercase">
-                    Restrições Alimentares?
+                    {t('reservation.form.dietary')}
                   </label>
                   <textarea 
                     rows={2}
                     value={formData.dietary}
                     onChange={(e) => handleInputChange('dietary', e.target.value)}
                     className="w-full bg-white/50 border-2 border-dashed border-brand-purple/30 focus:border-brand-pink outline-none p-4 rounded-lg font-serif italic text-brand-dark placeholder-brand-dark/30 resize-none transition-colors"
-                    placeholder="Alergias, intolerâncias ou preferências..."
+                    placeholder={t('reservation.form.dietaryPlaceholder')}
                   />
                 </div>
 
@@ -200,7 +202,7 @@ export const ReservationCard: React.FC = () => {
                 >
                   <span className="absolute inset-0 translate-x-1 translate-y-1 bg-brand-dark transition-transform group-hover:translate-x-2 group-hover:translate-y-2 rounded-full"></span>
                   <span className="relative inline-block bg-brand-pink border-2 border-brand-dark px-12 py-3 rounded-full font-sketch text-3xl text-white uppercase tracking-widest transition-transform group-active:translate-y-1">
-                    Confirmar Reserva
+                    {t('reservation.form.submit')}
                   </span>
                 </button>
               </div>
@@ -210,8 +212,8 @@ export const ReservationCard: React.FC = () => {
             <div className="mt-8 text-center">
                <DiamondDivider />
                <p className="font-serif text-sm text-brand-dark/60 mt-4">
-                 Dúvidas? Entre em contato pelo WhatsApp <br/>
-                 <span className="text-brand-purple font-bold">(11) 99999-9999</span>
+                 {t('reservation.success.contactUs')} <br/>
+                 <span className="text-brand-purple font-bold">{t('reservation.success.contactNumber')}</span>
                </p>
             </div>
       </PaperCard>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Layout } from './components/Layout/index';
-import { HomeCard } from './components/HomeCard/index';
-import { EventCard } from './components/EventCard/index';
+import { HomeCard } from './components/HomeCard';
+import { EventCard } from './components/EventCard';
 import { MenuCard } from './components/MenuCard/index';
-import { ReservationCard } from './components/ReservationCard/index';
-import { ChefsCard } from './components/ChefsCard/index';
-import { ManifestoCard } from './components/ManifestoCard/index';
-import { ContactCard } from './components/ContactCard/index';
+import { ReservationCard } from './components/ReservationCard';
+import { ChefsCard } from './components/ChefsCard';
+import { ManifestoCard } from './components/ManifestoCard';
+import { ContactCard } from './components/ContactCard';
 import { CompactCard } from './components/CompactCard/index';
 import { AllCard } from './components/AllCard/index';
 import { StoreCard } from './components/StoreCard/index';
@@ -19,11 +19,6 @@ import { TeamCard } from './components/TeamCard/index';
 import { CartProvider } from './contexts/CartContext';
 
 // Wrapper components to handle navigation with React Router
-const HomeWrapper: React.FC = () => {
-  const navigate = useNavigate();
-  return <HomeCard onNavigate={(view) => navigate(`/${view}`)} />;
-};
-
 const CompactWrapper: React.FC = () => {
   const navigate = useNavigate();
   return <CompactCard onNavigate={(view) => navigate(`/${view}`)} />;
@@ -75,7 +70,7 @@ const ProductDetailsWrapper: React.FC = () => {
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomeWrapper />} />
+      <Route path="/" element={<HomeCard />} />
       <Route path="/home" element={<Navigate to="/" replace />} />
       <Route path="/event" element={<EventCard />} />
       <Route path="/menu" element={<MenuCard />} />

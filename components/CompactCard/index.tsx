@@ -1,11 +1,11 @@
 import React from 'react';
-import { HomeCard } from '../HomeCard/index';
-import { EventCard } from '../EventCard/index';
+import { HomeCard } from '../HomeCard';
+import { EventCard } from '../EventCard';
 import { MenuCard } from '../MenuCard/index';
-import { ReservationCard } from '../ReservationCard/index';
-import { ChefsCard } from '../ChefsCard/index';
-import { ManifestoCard } from '../ManifestoCard/index';
-import { ContactCard } from '../ContactCard/index';
+import { ReservationCard } from '../ReservationCard';
+import { ChefsCard } from '../ChefsCard';
+import { ManifestoCard } from '../ManifestoCard';
+import { ContactCard } from '../ContactCard';
 import { DiamondDivider } from '../shared/Decorations';
 import { View } from '../../types';
 
@@ -22,7 +22,7 @@ export const CompactCard: React.FC<CompactCardProps> = ({ onNavigate }) => {
       */}
       
       <section id="home">
-        <HomeCard onNavigate={onNavigate} />
+        <HomeCard />
       </section>
 
       <div className="w-full flex justify-center opacity-50">

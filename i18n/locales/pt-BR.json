@@ -1,0 +1,285 @@
+{
+  "common": {
+    "brandName": "BERGAMOTA",
+    "brandNameSecond": "LUBISCA",
+    "loading": "Carregando..."
+  },
+  "nav": {
+    "home": "HOME",
+    "event": "O EVENTO",
+    "menu": "CARDÁPIO",
+    "chefs": "AS CHEFS",
+    "team": "QUEM SOMOS",
+    "store": "LOJINHA",
+    "blog": "BLOG",
+    "manifesto": "MANIFESTO",
+    "contact": "CONTATO",
+    "fullMenu": "MENU COMPLETO",
+    "compact": "COMPACTO",
+    "cart": "SACOLA",
+    "reserve": "RESERVAR",
+    "reserveNow": "AGORA"
+  },
+  "layout": {
+    "tagline": "cozinha de <1>alma</1> & <2>amizade</2>",
+    "affectiveGastronomy": "GASTRONOMIA",
+    "affectiveGastronomySecond": "AFETIVA",
+    "limitedSeats": "VAGAS LIMITADAS PARA ESTA EXPERIÊNCIA",
+    "footer": "© 2024 Bergamota Lubisca. Uma experiência única."
+  },
+  "home": {
+    "welcome": "Bem-vindo",
+    "subtitle": "Uma experiência gastronômica única",
+    "eventTitle": "Memória, Fermentação & Encontro",
+    "eventSubtitle": "Um jantar único, feito por duas amigas.",
+    "eventCta": "Prepare-se para uma noite onde cada prato é uma história — e cada história, um sabor."
+  },
+  "event": {
+    "aboutExperience": "Sobre a Experiência",
+    "title": "Sabores que Conectam",
+    "subtitle": "UMA NOITE DE GASTRONOMIA AFETIVA",
+    "intro": [
+      "Bergamota e Lubisca são amigas de longa data. Carregam memórias, viagens, risadas e descobertas — muitas delas feitas em volta de uma mesa.",
+      "Agora, elas transformam essa amizade em um evento único: uma noite de gastronomia nostálgica, afetiva e fermentada de histórias.",
+      "A proposta é simples: trazer à mesa sabores que marcaram suas vidas, misturados com técnica, espontaneidade e um toque de ousadia. É comida para lembrar, sentir e descobrir.",
+      "Você está convidado(a) para viver essa experiência."
+    ],
+    "closing": [
+      "Este evento é mais do que um jantar: é um encontro entre a memória e o presente.",
+      "Entre técnicas contemporâneas e receitas que abraçam.",
+      "Entre duas chefes que cozinham com história, alma e amizade."
+    ],
+    "cta": "Prepare-se para viver uma noite pensada nos mínimos detalhes — da primeira mordida ao último gole."
+  },
+  "menu": {
+    "title": "CARDÁPIO",
+    "subtitle": "Uma sequência de sabores e histórias",
+    "endMessage": "FIM DA VIAGEM CULINÁRIA",
+    "snacks": "SNACKS",
+    "starters": "ENTRADAS",
+    "mains": "PRINCIPAIS",
+    "desserts": "SOBREMESAS"
+  },
+  "reservation": {
+    "title": "Reserva",
+    "subtitle": "Garanta seu lugar à nossa mesa.",
+    "cantWait": "Mal podemos esperar para te receber nesta noite especial.",
+    "form": {
+      "yourName": "Seu Nome",
+      "namePlaceholder": "Como podemos te chamar?",
+      "email": "Email",
+      "emailPlaceholder": "seu@email.com",
+      "whatsapp": "WhatsApp",
+      "phone": "(00) 00000-0000",
+      "date": "DATA",
+      "dateValue": "20 de Maio, 2024",
+      "dateTime": "Sábado, às 19h30",
+      "places": "LUGARES",
+      "howMany": "Quantas pessoas?",
+      "guests": "NÚMERO DE CONVIDADOS",
+      "dietary": "Preferências ou Restrições",
+      "dietaryPlaceholder": "Alergias, intolerâncias ou preferências...",
+      "submit": "Solicitar Reserva",
+      "sending": "Enviando...",
+      "submitting": "ENVIANDO..."
+    },
+    "success": {
+      "title": "Reserva Confirmada!",
+      "subtitle": "Mal podemos esperar para te receber nesta noite especial.",
+      "guest": "CONVIDADO",
+      "tableFor": "MESA PARA",
+      "people": "Pessoas",
+      "date": "DATA",
+      "confirmationSent": "Um e-mail de confirmação foi enviado para",
+      "backToHome": "VOLTAR AO INÍCIO",
+      "contactUs": "Dúvidas? Fale conosco pelo WhatsApp:",
+      "contactNumber": "(11) 99999-9999"
+    }
+  },
+  "chefs": {
+    "title": "Quem Cozinha",
+    "together": "Duas amigas. Duas cozinhas. Uma só mesa.",
+    "bergamota": {
+      "name": "A Bergamota",
+      "tagline": "Cozinha de Memória",
+      "description": "Cozinhar é resgatar o que a gente nem sabia que tinha esquecido. Nas panelas de Dani, moram lembranças de avós, tardes de domingo e o cheiro de fogão à lenha. É comida que aquece por dentro — e que sempre pede bis.",
+      "quote": "Cozinhar é resgatar o que a gente nem sabia que tinha esquecido."
+    },
+    "lubisca": {
+      "name": "A Lubisca",
+      "tagline": "Fermentação & Ousadia",
+      "description": "O tempo é o melhor ingrediente. Nas mãos de Luiza, ele vira sabor. Fermentação não é só técnica: é paciência transformada em acidez, profundidade e surpresa. Aqui, a tradição encontra a experimentação — e a mesa nunca é igual.",
+      "quote": "O tempo é o melhor ingrediente."
+    }
+  },
+  "team": {
+    "title": "Nossa Equipe",
+    "subtitle": "Quem faz a mágica acontecer. Uma mistura de técnica, paixão e amizade.",
+    "joinUs": "Quer fazer parte?",
+    "joinDescription": "Estamos sempre em busca de pessoas apaixonadas por gastronomia e hospitalidade.",
+    "joinEmail": "Mande um oi para <1>talentos@bergamotalubisca.com.br</1>",
+    "members": {
+      "lubisca": {
+        "name": "Lubisca",
+        "role": "Chef & Co-Fundadora",
+        "description": "A alma da fermentação. Traz a profundidade do tempo e o carinho da tradição para cada prato."
+      },
+      "bergamota": {
+        "name": "Bergamota",
+        "role": "Chef & Co-Fundadora",
+        "description": "A mente criativa. Mistura memórias de infância com técnicas modernas de forma surpreendente."
+      },
+      "eduardo": {
+        "name": "Eduardo",
+        "role": "Head Bartender",
+        "description": "O alquimista dos drinks. Cria harmonizações líquidas que elevam a experiência gastronômica."
+      },
+      "support": {
+        "name": "Equipe de Apoio",
+        "role": "Serviço & Hospitalidade",
+        "description": "Sorrisos que acolhem. Nossa equipe de salão garante que você se sinta em casa."
+      },
+      "creative": {
+        "name": "Produção Criativa",
+        "role": "Arte & Curadoria",
+        "description": "Os olhos por trás da estética. Cuidam da música, decoração e atmosfera visual."
+      }
+    }
+  },
+  "manifesto": {
+    "title": "Manifesto",
+    "content": [
+      "Acreditamos que a mesa é um lugar sagrado.",
+      "Não importa se ela é de madeira de demolição ou fórmica descascada — o que importa é quem senta ao redor.",
+      "Comida não é só nutrição. É afeto que se mastiga.",
+      "É o cheiro que te leva de volta pra infância, o gosto que vira memória, a textura que te faz pausar e sentir.",
+      "Este jantar não é apenas sobre o que está no prato. É sobre o encontro.",
+      "Sobre rir, escutar, desacelerar. Sobre estar presente de verdade — sem pressa, sem performances.",
+      "Cozinhamos para contar histórias. As nossas, as de quem veio antes, as que ainda vão nascer nesta mesa.",
+      "Fermentamos paciência. Refogamos lembranças. Assamos afeto.",
+      "Aqui, tradição e experimentação dividem o mesmo fogão. O antigo não é descartado; o novo não é forçado.",
+      "Tudo coexiste, porque cozinha de verdade é assim: viva, imperfeita, generosa.",
+      "Que este jantar te alimente por dentro. Que você saia diferente de como entrou.",
+      "E que, no final, sobre aquele gostinho de 'quero mais'.",
+      "Bem-vindo(a) à nossa mesa.",
+      "Dani & Luiza"
+    ],
+    "quote": "Comida não é só nutrição. É afeto que se mastiga."
+  },
+  "contact": {
+    "title": "Fale Conosco",
+    "subtitle": "Dúvidas sobre o menu? Restrições? Quer saber mais sobre nossos jantares? A gente adora conversar — e tá aqui pra te ouvir.",
+    "description": "Escolha o canal que preferir. A gente responde com o mesmo carinho que colocamos nos pratos.",
+    "whatsapp": {
+      "label": "WhatsApp",
+      "number": "(11) 99999-9999",
+      "action": "Chamar no WhatsApp"
+    },
+    "email": {
+      "label": "Email",
+      "address": "oi@bergamotalubisca.com.br",
+      "action": "Enviar E-mail"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "bergamota": "@bergamota.cozinha",
+      "lubisca": "@lubisca.fermentados",
+      "action": "Seguir no Instagram"
+    },
+    "location": {
+      "title": "O Encontro",
+      "address": "Rua das Flores, 123",
+      "neighborhood": "Centro Histórico",
+      "city": "São Paulo, SP",
+      "cep": "01310-100"
+    }
+  },
+  "store": {
+    "title": "LOJINHA",
+    "subtitle": "Leve um pouco da nossa cozinha para a sua.",
+    "pickupNote": "Retirada disponível apenas na noite do evento",
+    "addToCart": "Adicionar à Sacola",
+    "quickAdd": "Adicionar Rápido",
+    "viewDetails": "Ver Detalhes",
+    "backToStore": "Voltar para a Lojinha"
+  },
+  "checkout": {
+    "title": "Finalizar Pedido",
+    "summary": "Resumo da Sacola",
+    "total": "TOTAL",
+    "paymentMethod": "Forma de Pagamento",
+    "pix": "PIX",
+    "card": "Cartão de Crédito",
+    "confirmOrder": "Confirmar Pedido",
+    "processing": "Processando...",
+    "emptyCart": {
+      "title": "Sua Sacola está Vazia",
+      "subtitle": "Que tal dar uma olhada na lojinha?",
+      "action": "Ir para a Lojinha"
+    },
+    "success": {
+      "title": "Compra Realizada!",
+      "subtitle": "Seus produtos estarão te esperando no dia do evento.",
+      "orderNumber": "PEDIDO",
+      "backToStore": "Voltar para a Lojinha"
+    }
+  },
+  "blog": {
+    "title": "DIÁRIO DE BORDO",
+    "subtitle": "Notas de cozinha, memórias soltas e segredos que decidimos compartilhar antes do jantar.",
+    "readMore": "Ler Mais",
+    "readFull": "Ler Completo",
+    "moreStories": "Novas histórias fermentando...",
+    "backToBlog": "Voltar para o Blog",
+    "notFound": "Post não encontrado",
+    "date": "DATA",
+    "author": "AUTORIA",
+    "readTime": "min de leitura"
+  },
+  "products": {
+    "dinnerExperience": {
+      "name": "Jantar - Experiência Completa",
+      "description": "Ingresso individual para a noite do evento. Menu degustação em 6 tempos + Welcome Drink exclusivo."
+    },
+    "kimchi": {
+      "name": "Kimchi da Lubisca",
+      "description": "Fermentado de acelga com pimenta gochugaru artesanal. 30 dias de cura."
+    },
+    "jam": {
+      "name": "Geleia de Bergamota",
+      "description": "Com especiarias e raspas da casca. Perfeita para queijos curados."
+    },
+    "pickles": {
+      "name": "Picles de Maxixe",
+      "description": "Crocante, ácido e com sementes de mostarda. O clássico da casa."
+    },
+    "apron": {
+      "name": "Avental Oficial",
+      "description": "Bordado à mão com o logo do evento. Linho misto cor crua."
+    }
+  },
+  "sidebar": {
+    "sections": "SEÇÕES",
+    "categories": "CATEGORIAS",
+    "themes": "TEMAS",
+    "shortcuts": "ATALHOS",
+    "theDinner": "O JANTAR",
+    "menu": "CARDÁPIO",
+    "store": "LOJINHA",
+    "blog": "BLOG",
+    "reserve": "RESERVAR"
+  },
+  "productDetails": {
+    "backToStore": "Voltar para a Lojinha",
+    "officialTicket": "INGRESSO OFICIAL",
+    "lubiscaFermented": "Lubisca Fermentados",
+    "bergamotaKitchen": "Cozinha da Bergamota",
+    "officialMerch": "Merch Oficial",
+    "addToCart": "Adicionar à Sacola",
+    "goToCart": "Ir para Sacola",
+    "justAdded": "Adicionado!",
+    "details": "Detalhes do Produto",
+    "quantity": "Quantidade",
+    "notFound": "Produto não encontrado"
+  }
+}

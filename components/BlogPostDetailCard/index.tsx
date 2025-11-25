@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Section } from '../ui/Section';
 import { PaperCard } from '../ui/PaperCard';
 import { DiamondDivider, ScribbleLine, StarDoodle } from '../shared/Decorations';
@@ -14,13 +15,14 @@ interface BlogPostDetailCardProps {
 }
 
 export const BlogPostDetailCard: React.FC<BlogPostDetailCardProps> = ({ postId, onBack }) => {
+  const { t } = useTranslation();
   const post = BLOG_POSTS.find(p => p.id === postId);
 
   if (!post) {
     return (
       <Section className="text-center py-20">
-        <h2 className="font-sketch text-4xl text-brand-purple">Post não encontrado</h2>
-        <button onClick={onBack} className="mt-4 underline font-sketch text-2xl text-brand-pink">Voltar para o Blog</button>
+        <h2 className="font-sketch text-4xl text-brand-purple">{t('blog.notFound')}</h2>
+        <button onClick={onBack} className="mt-4 underline font-sketch text-2xl text-brand-pink">{t('blog.backToBlog')}</button>
       </Section>
     );
   }
@@ -36,7 +38,7 @@ export const BlogPostDetailCard: React.FC<BlogPostDetailCardProps> = ({ postId, 
         className="mb-8 flex items-center gap-2 text-brand-purple font-sketch text-2xl hover:text-brand-pink transition-colors group px-4"
       >
         <ArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-        <span>Voltar para o Blog</span>
+        <span>{t('blog.backToBlog')}</span>
       </button>
 
       {/* Main Content Card */}

@@ -8,6 +8,7 @@ import { BergamotIcon, SmallJarIcon, TicketIcon } from '../Icons';
 import { PRODUCTS } from '../../constants';
 import { useCart } from '../../contexts/CartContext';
 import { ShoppingBag, Eye } from 'lucide-react';
+import { t } from 'i18next';
 
 interface StoreCardProps {
   onProductClick?: (id: number) => void;
@@ -35,10 +36,10 @@ export const StoreCard: React.FC<StoreCardProps> = ({ onProductClick }) => {
       <PaperCard hasDashedBorder>
         <header className="text-center mb-12">
            <h1 className="font-sketch font-bold text-6xl text-brand-purple mb-4 relative inline-block">
-             LOJINHA
+             {t('store.title')}
              <StarDoodle className="absolute -top-4 -right-8 text-brand-orange w-8 h-8 animate-pulse" />
            </h1>
-           <p className="font-serif italic text-brand-dark/60 text-lg">Leve um pouco da nossa cozinha para a sua.</p>
+           <p className="font-serif italic text-brand-dark/60 text-lg">{t('store.subtitle')}</p>
            <div className="mt-6">
              <DiamondDivider />
            </div>
@@ -102,7 +103,7 @@ export const StoreCard: React.FC<StoreCardProps> = ({ onProductClick }) => {
 
         <div className="mt-16 text-center">
           <p className="font-sans text-xs text-brand-dark/50 uppercase tracking-[0.2em]">
-            Retirada disponível apenas na noite do evento
+            {t('store.pickupNote')}
           </p>
         </div>
 

@@ -1,11 +1,14 @@
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Section } from '../ui/Section';
 import { PaperCard } from '../ui/PaperCard';
 import { StarDoodle, ScribbleLine } from '../shared/Decorations';
 import { TEAM_MEMBERS_PAGE } from '../../constants';
 
 export const TeamCard: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <Section maxWidth="max-w-5xl">
        {/* Decorative Background for the "Wall" feel */}
@@ -13,13 +16,13 @@ export const TeamCard: React.FC = () => {
        
        <div className="text-center mb-16 relative">
           <h1 className="font-sketch text-7xl text-brand-purple mb-2 inline-block relative">
-            Nossa Equipe
+            {t('team.title')}
             <div className="absolute -top-6 -right-8">
               <StarDoodle className="w-10 h-10 text-brand-orange animate-pulse" />
             </div>
           </h1>
           <p className="font-serif italic text-brand-dark/70 text-xl max-w-2xl mx-auto mt-4">
-            Quem faz a mágica acontecer. Uma mistura de técnica, paixão e amizade.
+            {t('team.subtitle')}
           </p>
           <div className="w-1/3 mx-auto mt-6 opacity-40">
             <ScribbleLine />
@@ -62,11 +65,12 @@ export const TeamCard: React.FC = () => {
        </div>
        
        <PaperCard className="mt-16 text-center" hasDashedBorder>
-          <h3 className="font-sketch text-3xl text-brand-pink mb-2">Quer fazer parte?</h3>
+          <h3 className="font-sketch text-3xl text-brand-pink mb-2">{t('team.joinUs')}</h3>
           <p className="font-serif text-brand-dark/70">
-            Estamos sempre em busca de pessoas apaixonadas por gastronomia e hospitalidade.
+            {t('team.joinDescription')}
             <br />
-            Mande um oi para <span className="text-brand-purple font-bold">talentos@bergamotalubisca.com.br</span>
+            {t('team.joinEmail', { defaultValue: 'Mande um oi para talentos@bergamotalubisca.com.br' }).split('<1>')[0]}
+            <span className="text-brand-purple font-bold">{t('team.joinEmail').split('<1>')[1]?.split('</1>')[0] || 'talentos@bergamotalubisca.com.br'}</span>
           </p>
        </PaperCard>
 

@@ -1,9 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Mail, MapPin, Instagram, Phone } from 'lucide-react';
 import { StarDoodle } from './shared/Decorations';
 import { Section } from './ui/Section';
 
 export const ContactCard: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <Section maxWidth="max-w-4xl">
       <div className="bg-brand-cream border-2 border-brand-purple relative p-8 md:p-12 overflow-hidden">
@@ -17,9 +20,9 @@ export const ContactCard: React.FC = () => {
            {/* Left: Info */}
            <div className="space-y-8">
               <div>
-                <h2 className="font-sketch text-5xl text-brand-dark mb-6">Fale Conosco</h2>
+                <h2 className="font-sketch text-5xl text-brand-dark mb-6">{t('contact.title')}</h2>
                 <p className="font-serif italic text-brand-dark/70 text-lg">
-                  Dúvidas sobre o menu? Restrições? Ou apenas quer dar um oi? Estamos por aqui.
+                  {t('contact.subtitle')}
                 </p>
               </div>
 
@@ -30,9 +33,9 @@ export const ContactCard: React.FC = () => {
                        <Phone size={20} />
                     </div>
                     <div>
-                       <div className="font-bold text-brand-purple text-xs tracking-widest uppercase mb-1">WhatsApp</div>
+                       <div className="font-bold text-brand-purple text-xs tracking-widest uppercase mb-1">{t('contact.whatsapp.label')}</div>
                        <a href="#" className="font-sketch text-2xl text-brand-dark hover:text-brand-orange transition-colors">
-                         (11) 99999-9999
+                         {t('contact.whatsapp.number')}
                        </a>
                     </div>
                  </div>
@@ -42,9 +45,9 @@ export const ContactCard: React.FC = () => {
                        <Mail size={20} />
                     </div>
                     <div>
-                       <div className="font-bold text-brand-purple text-xs tracking-widest uppercase mb-1">Email</div>
+                       <div className="font-bold text-brand-purple text-xs tracking-widest uppercase mb-1">{t('contact.email.label')}</div>
                        <a href="#" className="font-sketch text-2xl text-brand-dark hover:text-brand-orange transition-colors">
-                         oi@bergamotalubisca.com.br
+                         {t('contact.email.address')}
                        </a>
                     </div>
                  </div>
@@ -54,12 +57,12 @@ export const ContactCard: React.FC = () => {
                        <Instagram size={20} />
                     </div>
                     <div>
-                       <div className="font-bold text-brand-purple text-xs tracking-widest uppercase mb-1">Instagram</div>
+                       <div className="font-bold text-brand-purple text-xs tracking-widest uppercase mb-1">{t('contact.instagram.label')}</div>
                        <a href="#" className="font-sketch text-2xl text-brand-dark hover:text-brand-orange transition-colors block">
-                         @bergamota.cozinha
+                         {t('contact.instagram.bergamota')}
                        </a>
                        <a href="#" className="font-sketch text-2xl text-brand-dark hover:text-brand-orange transition-colors block">
-                         @lubisca.fermentados
+                         {t('contact.instagram.lubisca')}
                        </a>
                     </div>
                  </div>
@@ -79,10 +82,10 @@ export const ContactCard: React.FC = () => {
 
                  </div>
                  <div className="mt-4 text-center">
-                    <h3 className="font-sketch text-2xl text-brand-purple font-bold">O Encontro</h3>
+                    <h3 className="font-sketch text-2xl text-brand-purple font-bold">{t('contact.location.title')}</h3>
                     <p className="font-serif text-brand-dark text-sm mt-1">
-                      Rua das Flores, 123 <br/>
-                      Centro Histórico
+                      {t('contact.location.address')} <br/>
+                      {t('contact.location.neighborhood')}
                     </p>
                  </div>
                  

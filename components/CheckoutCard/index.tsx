@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Section } from '../ui/Section';
 import { PaperCard } from '../ui/PaperCard';
 import { DiamondDivider, StarDoodle } from '../shared/Decorations';
@@ -13,6 +14,7 @@ interface CheckoutCardProps {
 }
 
 export const CheckoutCard: React.FC<CheckoutCardProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
   const { items, updateQuantity, removeFromCart, total, clearCart } = useCart();
   const [step, setStep] = useState<'review' | 'success'>('review');
   const [loading, setLoading] = useState(false);
@@ -39,9 +41,9 @@ export const CheckoutCard: React.FC<CheckoutCardProps> = ({ onNavigate }) => {
                 <ShoppingBag className="text-white w-10 h-10" strokeWidth={2} />
               </div>
 
-              <h2 className="font-sketch text-5xl text-brand-purple mb-2">Compra Realizada!</h2>
+              <h2 className="font-sketch text-5xl text-brand-purple mb-2">{t('checkout.success.title')}</h2>
               <p className="font-serif italic text-brand-dark/80 text-xl mb-8">
-                Seus produtos estarão te esperando no dia do evento.
+                {t('checkout.success.subtitle')}
               </p>
 
               {/* TICKET VISUAL */}
@@ -97,14 +99,14 @@ export const CheckoutCard: React.FC<CheckoutCardProps> = ({ onNavigate }) => {
   // CHECKOUT FORM STATE
   return (
     <Section maxWidth="max-w-5xl">
-      <h1 className="font-sketch text-6xl text-brand-purple text-center mb-8">Finalizar Pedido</h1>
+      <h1 className="font-sketch text-6xl text-brand-purple text-center mb-8">{t('checkout.title')}</h1>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* LEFT COL: CART ITEMS */}
         <PaperCard className="h-full">
            <h3 className="font-sans font-bold text-xs tracking-[0.2em] text-brand-purple uppercase mb-6 border-b border-brand-purple/10 pb-2">
-             Resumo da Sacola
+             {t('checkout.summary')}
            </h3>
            
            <div className="space-y-6 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
