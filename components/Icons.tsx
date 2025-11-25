@@ -1,8 +1,12 @@
-import React from 'react';
-
-// STRICT PALETTE APPLIED: #FF9F1C (Orange), #F23C96 (Pink), #451D88 (Purple), #FFFCF5 (Cream)
+import Logo from './../icons/logo.png';
+import Lubisca from './../icons/lubisca.png';
+import Bergamota from './../icons/bergamota.png';
 
 export const JarLogo = () => (
+  <img src={Logo} alt="Bergamota Lubisca Logo" className="w-full h-full drop-shadow-xl filter" />
+);
+
+export const JarLogo2 = () => (
   <svg viewBox="0 0 240 240" className="w-full h-full drop-shadow-xl filter">
     <defs>
       <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
@@ -69,7 +73,16 @@ export const JarLogo = () => (
   </svg>
 );
 
+
+export const SmallJarIcon = ({ className }: { className?: string }) => (
+  <img src={Lubisca} alt="Lubisca Icon" className={className} />
+);
+
 export const BergamotIcon = ({ className }: { className?: string }) => (
+  <img src={Bergamota} alt="Bergamot Icon" className={className} />
+);
+
+export const BergamotIcon2 = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 60 60" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <g transform="translate(5,5)">
        {/* Leaf */}
@@ -89,7 +102,7 @@ export const BergamotIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export const SmallJarIcon = ({ className }: { className?: string }) => (
+export const SmallJarIcon2 = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 60 60" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <g transform="translate(10,5)">
       {/* Lid */}
