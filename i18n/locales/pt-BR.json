@@ -84,15 +84,19 @@
       "submitting": "ENVIANDO..."
     },
     "success": {
-      "title": "Reserva Confirmada!",
-      "subtitle": "Mal podemos esperar para te receber nesta noite especial.",
+      "title": "✨ Sua reserva foi solicitada! ✨",
+      "subtitle": "Obrigado por garantir seu lugar nessa experiência gastronômica com Bergamota & Lubisca.",
+      "nextStep": "Agora falta apenas um passo para confirmar sua presença.",
+      "instructions": "Para concluir sua reserva, clique no botão Confirmar.",
+      "redirectInfo": "Você será redirecionado para a página de pagamento via PIX.",
+      "pixCodeInfo": "Ao abrir o PIX, informe o código abaixo na mensagem do pagamento — isso garante que possamos identificar sua reserva rapidamente.",
+      "confirmationInfo": "Assim que o pagamento for confirmado, você receberá uma mensagem no WhatsApp validando sua reserva.",
       "guest": "CONVIDADO",
       "tableFor": "MESA PARA",
       "people": "Pessoas",
-      "date": "DATA",
-      "confirmationSent": "Um e-mail de confirmação foi enviado para",
-      "backToHome": "VOLTAR AO INÍCIO",
-      "contactUs": "Dúvidas? Fale conosco pelo WhatsApp:",
+      "reservationCode": "CÓDIGO DA RESERVA",
+      "confirmButton": "Confirmar Reserva",
+      "contactUs": "Qualquer dúvida, nossa equipe está disponível para ajudar pelo WhatsApp.",
       "contactNumber": "(11) 99999-9999"
     }
   },

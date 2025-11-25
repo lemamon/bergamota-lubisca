@@ -84,15 +84,19 @@
       "submitting": "SUBMITTING..."
     },
     "success": {
-      "title": "Reservation Confirmed!",
-      "subtitle": "We can't wait to welcome you on this special night.",
+      "title": "✨ Your reservation has been requested! ✨",
+      "subtitle": "Thank you for securing your spot in this gastronomic experience with Bergamota & Lubisca.",
+      "nextStep": "Just one more step to confirm your presence.",
+      "instructions": "To complete your reservation, click the Confirm button.",
+      "redirectInfo": "You will be redirected to the PIX payment page.",
+      "pixCodeInfo": "When opening PIX, include the code below in the payment message — this ensures we can quickly identify your reservation.",
+      "confirmationInfo": "Once payment is confirmed, you will receive a WhatsApp message validating your reservation.",
       "guest": "GUEST",
       "tableFor": "TABLE FOR",
       "people": "People",
-      "date": "DATE",
-      "confirmationSent": "A confirmation email has been sent to",
-      "backToHome": "BACK TO HOME",
-      "contactUs": "Questions? Contact us on WhatsApp:",
+      "reservationCode": "RESERVATION CODE",
+      "confirmButton": "Confirm Reservation",
+      "contactUs": "If you have any questions, our team is available to help via WhatsApp.",
       "contactNumber": "(11) 99999-9999"
     }
   },
