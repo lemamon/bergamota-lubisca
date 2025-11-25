@@ -18,9 +18,9 @@ export const ReservationCard: React.FC = () => {
     name: '',
     email: '',
     phone: '',
-    guests: 2,
+    qty: 2,
     date: '2024-05-20',
-    dietary: ''
+    obs: ''
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -34,7 +34,8 @@ export const ReservationCard: React.FC = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        qty: formData.guests,
+        qty: formData.qty,
+        obs: formData.obs
       });
 
       if (result.success) {
@@ -55,7 +56,7 @@ export const ReservationCard: React.FC = () => {
 
   const reservationCode = useReservationCode({
     name: formData.name || 'Guest',
-    guests: formData.guests,
+    qty: formData.qty,
     email: formData.email || 'pending@email.com'
   });
 
@@ -101,7 +102,7 @@ export const ReservationCard: React.FC = () => {
                  <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
                       <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-1">{t('reservation.success.tableFor')}</div>
-                      <div className="font-sketch text-2xl text-brand-pink">{formData.guests} {t('reservation.success.people')}</div>
+                      <div className="font-sketch text-2xl text-brand-pink">{formData.qty} {t('reservation.success.people')}</div>
                     </div>
                     <div className="text-right">
                        <div className="w-16 h-16 opacity-20">
@@ -134,7 +135,7 @@ export const ReservationCard: React.FC = () => {
               
               <div className="flex justify-center mb-6">
                 <button 
-                  onClick={() => window.open('https://pix-payment-link', '_blank')}
+                  onClick={() => window.open(import.meta.env.VITE_PIX_PAYMENT_URL, '_blank')}
                   className="group relative inline-block focus:outline-none"
                 >
                   <span className="absolute inset-0 translate-x-1 translate-y-1 bg-brand-dark transition-transform group-hover:translate-x-2 group-hover:translate-y-2 rounded-full"></span>
@@ -267,15 +268,15 @@ export const ReservationCard: React.FC = () => {
                       <div className="flex items-center gap-3 bg-white px-2 py-1 rounded-full border border-brand-purple">
                         <button 
                           type="button"
-                          onClick={() => setFormData(prev => ({ ...prev, guests: Math.max(1, prev.guests - 1) }))}
+                          onClick={() => setFormData(prev => ({ ...prev, guests: Math.max(1, prev.qty - 1) }))}
                           className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-brand-purple/10 text-brand-purple font-bold text-xl"
                         >
                           -
                         </button>
-                        <span className="font-sketch text-3xl w-6 text-center">{formData.guests}</span>
+                        <span className="font-sketch text-3xl w-6 text-center">{formData.qty}</span>
                         <button 
                           type="button"
-                          onClick={() => setFormData(prev => ({ ...prev, guests: Math.min(10, prev.guests + 1) }))}
+                          onClick={() => setFormData(prev => ({ ...prev, guests: Math.min(10, prev.qty + 1) }))}
                           className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-brand-purple/10 text-brand-purple font-bold text-xl"
                         >
                           +
@@ -291,8 +292,8 @@ export const ReservationCard: React.FC = () => {
                   </label>
                   <textarea 
                     rows={2}
-                    value={formData.dietary}
-                    onChange={(e) => handleInputChange('dietary', e.target.value)}
+                    value={formData.obs}
+                    onChange={(e) => handleInputChange('obs', e.target.value)}
                     className="w-full bg-white/50 border-2 border-dashed border-brand-purple/30 focus:border-brand-pink outline-none p-4 rounded-lg font-serif italic text-brand-dark placeholder-brand-dark/30 resize-none transition-colors"
                     placeholder={t('reservation.form.dietaryPlaceholder')}
                   />
