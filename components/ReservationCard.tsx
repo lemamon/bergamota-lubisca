@@ -10,7 +10,7 @@ import { submitReservation } from '../services/reservationService';
 
 export const ReservationCard: React.FC = () => {
   const { t } = useTranslation();
-  const [step, setStep] = useState<'form' | 'success'>('success');
+  const [step, setStep] = useState<'form' | 'success'>('form');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
