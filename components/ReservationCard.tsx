@@ -6,21 +6,47 @@ import { Check, Calendar } from 'lucide-react';
 import { Section } from './ui/Section';
 import { PaperCard } from './ui/PaperCard';
 import { useReservationCode } from '../hooks/useReservationCode';
+import { submitReservation } from '../services/reservationService';
 
 export const ReservationCard: React.FC = () => {
   const { t } = useTranslation();
   const [step, setStep] = useState<'form' | 'success'>('success');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     guests: 2,
     date: '2024-05-20',
     dietary: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setTimeout(() => setStep('success'), 800);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const result = await submitReservation({
+        id: reservationCode,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        qty: formData.guests,
+      });
+
+      if (result.success) {
+        setStep('success');
+      } else {
+        setSubmitError(result.message);
+      }
+    } catch (error) {
+      setSubmitError('Erro ao enviar reserva. Tente novamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string | number) => {
@@ -32,6 +58,16 @@ export const ReservationCard: React.FC = () => {
     guests: formData.guests,
     email: formData.email || 'pending@email.com'
   });
+
+  const handleCopyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(reservationCode);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (error) {
+      console.error('Failed to copy code:', error);
+    }
+  };
 
   if (step === 'success') {
     return (
@@ -51,7 +87,9 @@ export const ReservationCard: React.FC = () => {
     
 
               {/* TICKET STUB VISUAL */}
-              <div className="bg-white border-2 border-brand-dark w-full max-w-md relative p-6 shadow-sm transform -rotate-1 mb-8">
+              <div className="bg-white border-2 border-brand-dark w-full max-w-md relative p-6 shadow-sm transform -rotate-1 mb-8 cursor-pointer transition-all duration-200 cursor-pointer border-2 border-transparent hover:border-brand-pink relative group" onClick={handleCopyCode}>
+                
+                 
                  <div className="absolute -left-3 top-1/2 w-6 h-6 bg-brand-cream rounded-full border-r-2 border-brand-dark transform -translate-y-1/2"></div>
                  <div className="absolute -right-3 top-1/2 w-6 h-6 bg-brand-cream rounded-full border-l-2 border-brand-dark transform -translate-y-1/2"></div>
                  
@@ -74,10 +112,16 @@ export const ReservationCard: React.FC = () => {
                  
                  <div className="border-t-2 border-dotted border-brand-dark/20 pt-4">
                     <div className="text-xs font-bold tracking-[0.2em] text-brand-purple uppercase mb-2">{t('reservation.success.reservationCode')}</div>
-                    <div className="font-mono text-2xl font-bold text-brand-dark bg-brand-cream/50 p-3 rounded text-center tracking-wider">
+                    <button
+                      className="font-mono text-2xl font-bold text-brand-dark bg-brand-cream/50 p-3 rounded text-center tracking-wider "
+                    >
                       {reservationCode}
-                    </div>
+                    </button>
                  </div>
+
+                  <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-brand-purple text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-sans">
+                    {isCopied ? '✓ Copiado!' : 'Clique para copiar'}
+                  </span>
               </div>
 
               <p className="font-serif font-bold text-brand-purple text-lg">
@@ -101,12 +145,12 @@ export const ReservationCard: React.FC = () => {
                 
               </div>
           
-              <div className="w-full max-w-md space-y-4 mb-8 text-left bg-brand-cream/50 p-6 rounded-lg border border-brand-purple/20">
-                <p className="font-serif text-brand-dark/80">
+              <div className="w-full max-w-md space-y-3 mb-8 text-center bg-brand-cream/50 p-6 rounded-lg border border-brand-purple/20">
+                <p className="font-serif text-brand-dark/80 text-sm">
                   {t('reservation.success.instructions')}
                 </p>
                 
-                <p className="font-serif text-brand-dark/80">
+                <p className="font-serif text-brand-dark/80 text-sm">
                   {t('reservation.success.pixCodeInfo')}
                 </p>
               </div>
@@ -188,7 +232,10 @@ export const ReservationCard: React.FC = () => {
                   <div className="relative group">
                     <label className="block font-sans text-xs font-bold text-brand-purple tracking-widest mb-1 uppercase">{t('reservation.form.whatsapp')}</label>
                     <input 
-                      type="tel" 
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
                       className="w-full bg-transparent border-b-2 border-brand-purple/30 focus:border-brand-pink outline-none py-2 font-sketch text-2xl text-brand-dark"
                       placeholder={t('reservation.form.phone')}
                     />
@@ -253,15 +300,23 @@ export const ReservationCard: React.FC = () => {
 
               </div>
 
+              {/* Error Message */}
+              {submitError && (
+                <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4 text-center">
+                  <p className="font-serif text-red-600 font-bold">{submitError}</p>
+                </div>
+              )}
+
               {/* Submit Button */}
               <div className="pt-4 flex justify-center">
                 <button 
                   type="submit"
-                  className="group relative inline-block focus:outline-none"
+                  disabled={isSubmitting}
+                  className="group relative inline-block focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="absolute inset-0 translate-x-1 translate-y-1 bg-brand-dark transition-transform group-hover:translate-x-2 group-hover:translate-y-2 rounded-full"></span>
                   <span className="relative inline-block bg-brand-pink border-2 border-brand-dark px-12 py-3 rounded-full font-sketch text-3xl text-white uppercase tracking-widest transition-transform group-active:translate-y-1">
-                    {t('reservation.form.submit')}
+                    {isSubmitting ? t('reservation.form.sending') : t('reservation.form.submit')}
                   </span>
                 </button>
               </div>
