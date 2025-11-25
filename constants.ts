@@ -6,7 +6,7 @@ export const EVENT_TITLE = "Sabores que Conectam";
 export const EVENT_SUBTITLE = "UMA NOITE DE GASTRONOMIA AFETIVA";
 
 export const EVENT_INTRO = [
-  "Bergamota e Lubisca são amigas de longa data. Carregam memórias, viagens, risadas e descobertas — muitas delas feitas em volta de uma mesa.",
+  "Bergamota e Lubisca são amigas de longa data. Carregam memórias, viagens, risadas e descobertas, muitas delas feitas em volta de uma cozinha.",
   "Agora, elas transformam essa amizade em um evento único: uma noite de gastronomia nostálgica, afetiva e fermentada de histórias.",
   "A proposta é simples: trazer à mesa sabores que marcaram suas vidas, misturados com técnica, espontaneidade e um toque de ousadia. É comida para lembrar, sentir e descobrir.",
   "Você está convidado(a) para viver essa experiência."
@@ -18,7 +18,7 @@ export const EVENT_CLOSING = [
   "Entre duas chefes que cozinham com história, alma e amizade."
 ];
 
-export const EVENT_CTA = "Prepare-se para viver uma noite pensada nos mínimos detalhes — da primeira mordida ao último gole.";
+export const EVENT_CTA = "Prepare-se para viver uma noite pensada nos mínimos detalhes, da primeira mordida ao último gole.";
 
 export const TEAM_MEMBERS_PAGE = [
   {
