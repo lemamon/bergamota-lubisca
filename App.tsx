@@ -17,6 +17,7 @@ import { BlogCard } from './components/BlogCard/index';
 import { BlogPostDetailCard } from './components/BlogPostDetailCard/index';
 import { TeamCard } from './components/TeamCard/index';
 import { CartProvider } from './contexts/CartContext';
+import { ScrollToTop } from './components/ScrollToTop';
 
 // Wrapper components to handle navigation with React Router
 const CompactWrapper: React.FC = () => {
@@ -70,7 +71,8 @@ const ProductDetailsWrapper: React.FC = () => {
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomeCard />} />
+      {/* <Route path="/" element={<HomeCard />} /> */}
+      <Route path="/" element={<AllWrapper />} />
       <Route path="/home" element={<Navigate to="/" replace />} />
       <Route path="/event" element={<EventCard />} />
       <Route path="/menu" element={<MenuCard />} />
@@ -94,6 +96,7 @@ const AppRoutes: React.FC = () => {
 const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <CartProvider>
         <Layout>
           <div className="py-4 animate-fade-in-up">
